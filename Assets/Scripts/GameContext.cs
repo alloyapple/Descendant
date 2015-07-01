@@ -1,4 +1,4 @@
-﻿namespace pocketjam15.descendant
+namespace pocketjam15.descendant
 {
 
 	public class GameContext
@@ -21,7 +21,7 @@
 		
 		public UIController uiController { get; set; }
 
-		public DescendantController descendantController { get; set;}
+		public HeroController descendantController { get; set;}
 		
 		public PlayerController playerController { get; set; }
 		

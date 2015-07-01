@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 namespace pocketjam15.descendant
 {
-	public class DescendantController : MonoBehaviour {
+	public class HeroController : MonoBehaviour {
 
-		private int health = 100;
+		public int _health;
+		public int _armor;
+		public int _damage;
+		public int _actionPoints;
+
 		EnemyController _enemyController;
 
 		void Start()
@@ -20,13 +26,15 @@ namespace pocketjam15.descendant
 
 		public void TakeDamage(int damage)
 		{
-			health = health - damage;
+			_health = _health - damage;
 		}
 
 		public void AutoAttack ()
 		{
 			_enemyController.TakeDamage(5);
 		}
+
+		// TODO: Wrapper/Class needed for an attack, like an attack package
 
 	}
 }

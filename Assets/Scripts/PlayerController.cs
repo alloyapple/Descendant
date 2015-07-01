@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace pocketjam15.descendant
 {
 	public class PlayerController : MonoBehaviour {
 
-		DescendantController _descendantController;
+		HeroController _descendantController;
 		
 		void Start()
 		{
