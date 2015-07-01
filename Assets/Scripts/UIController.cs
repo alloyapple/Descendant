@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace pocketjam15.descendant
 {
@@ -10,12 +11,15 @@ namespace pocketjam15.descendant
 
 		public GameObject VictoryScreen;
 
+		public Slider _intervalIndicator;
+
 		PlayerController _playerController;
 		
 		void Start()
 		{
 			_playerController = GameContext.currentInstance.playerController;
 			VictoryScreen.SetActive (false);
+			_intervalIndicator.value = 0;
 		}
 
 		void Awake()
@@ -36,6 +40,11 @@ namespace pocketjam15.descendant
 		public void Victory()
 		{
 			VictoryScreen.SetActive (true);
+		}
+
+		public void UpdateIntervalIndicator(float m_progress)
+		{
+			_intervalIndicator.value = m_progress;
 		}
 
 	}

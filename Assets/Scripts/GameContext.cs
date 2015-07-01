@@ -21,6 +21,8 @@ namespace pocketjam15.descendant
 		
 		public UIController uiController { get; set; }
 
+		public CombatController combatController { get; set;}
+
 		public HeroController descendantController { get; set;}
 		
 		public PlayerController playerController { get; set; }
