@@ -5,19 +5,17 @@ namespace pocketjam15.descendant
 {
 	public class CombatController : MonoBehaviour {
 		
-		public float _combatInterval;
-		private float m_currentInterval;
+		public float _combatInterval;		//full interval used for this entity
 
-		private bool m_instantAction;
-		private bool m_intervalAction;
-
-		private Time m_enabledTime;
+		private float m_currentInterval;	//how far into the current interval are we?
+		private bool m_instantAction;		//has the entity activated an instant action?
+		private bool m_queuedAction;		//has the entity activated queued action?
 		
 		UIController m_uiController;
 
 		// Use this for initialization
 		void Start () {
-			ResetInterval();
+			ResetInterval(); //Set up initial interval information
 			m_uiController = GameContext.currentInstance.uiController;
 		}
 
@@ -40,7 +38,7 @@ namespace pocketjam15.descendant
 
 		private void CompleteInterval()
 		{
-			if (m_intervalAction)
+			if (m_queuedAction)
 			{
 				//activate queued attack
 			}
