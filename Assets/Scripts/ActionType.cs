@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class ActionType			
 {
 	#region Variables and Constructors
@@ -12,15 +11,23 @@ public class ActionType
 		None,
 		DealDamage,
 		AddHealth,
-		AddArmor
+		AddArmor,
+		DetractArmor
 	}
 	
-	public bool 	_instantApply;
+	public bool 			_instantApply;
+
+	public ActionTypeName	_type;
 	
-	public int 		_attackStrength;
-	public int 		_attackStrengthOT;
+	public int 		_damageAmount;
+	public int 		_damageAmountOT;			// TODO: OT = over time, test if work while being processed in list
 	public int		_healAmount;
 	public int		_healAmountOT;
+	public int 		_armorAdd;
+	public int 		_armorAddOT;
+	public int		_armorDetract;
+	public int		_armorDetractOT;
+
 	public int		_actionPoints;				// TODO: Counter Calculate Cost of action
 	
 	public float 	_coolDownTime;
@@ -28,11 +35,21 @@ public class ActionType
 
 	private GameObject m_ActionCaster;
 	private GameObject m_ActionReceiver;
+	private EntityMain m_ActionCasterEntity;
+	private EntityMain m_ActionReceiverEntity;
 
 	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
 	{
 		// TODO: Have list for multiple receivers
-		
+
+		m_ActionCaster = CasterGo;
+		m_ActionReceiver = ReceiverGo;
+
+		if (m_ActionCaster != null && m_ActionReceiver != null) 
+		{
+			m_ActionCasterEntity = m_ActionCaster.GetComponent<EntityMain>();
+			m_ActionReceiverEntity = m_ActionCaster.GetComponent<EntityMain>();
+		}
 	}
 
 	#endregion
@@ -44,17 +61,35 @@ public class ActionType
 		switch (currentAction) {
 		case ActionTypeName.DealDamage:
 			{
-				ApplyDamage ();
+				if (m_ActionReceiverEntity != null)
+				{
+					m_ActionReceiverEntity.ApplyDamage(_damageAmount);
+				}
 				break;
 			}
 		case ActionTypeName.AddHealth:
 			{
-				AddHealth ();
+				if (m_ActionCasterEntity != null)
+				{
+					m_ActionCasterEntity.AddHealth(_healAmount);
+				}
 				break;
 			}
-		case ActionTypeName.AddHealth:
+		case ActionTypeName.AddArmor:
 			{
-				AddArmor ();
+				if (m_ActionCasterEntity != null)
+				{
+				m_ActionCasterEntity.AddArmor(_armorAdd);
+				}
+				break;
+			}
+
+		case ActionTypeName.DetractArmor:
+			{
+				if (m_ActionReceiverEntity != null)
+				{
+					m_ActionReceiverEntity.DetractArmor(_armorDetract);
+				}
 				break;
 			}
 		}
@@ -63,31 +98,20 @@ public class ActionType
 	#endregion
 	
 	#region AppliedMethods
-	
-	public void ApplyDamage()
-	{
-														// TODO: receive objects to apply etc.
-	}
-	public void AddHealth()
-	{
-	
-	}
-	public void AddArmor()
-	{
 
-	}
-	
 	public bool CoolDownRunning()						// TODO: GFX tie in
 	{
-		_currentCoolDownTime = _coolDownTime;
-		
-		while (_currentCoolDownTime > 0f) 
+		if (!_instantApply) 
 		{
-			_currentCoolDownTime -= Time.deltaTime;
-			
-			return true;
-		}
+			_currentCoolDownTime = _coolDownTime;
 		
+			while (_currentCoolDownTime > 0f) {
+				_currentCoolDownTime -= Time.deltaTime;
+			
+				return true;
+			}
+			return false;
+		}
 		return false;
 	}
 	
