@@ -1,0 +1,453 @@
+fileFormatVersion: 2
+guid: f5c19ee36c3aeb947a5b8056a895b875
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Box003
+    100002: Line002
+    100004: Object001
+    100006: Object002
+    100008: //RootNode
+    100010: Player_Rig_
+    100012: Player_Rig_Head
+    100014: Player_Rig_LCalf
+    100016: Player_Rig_LFoot
+    100018: Player_Rig_LForearm
+    100020: Player_Rig_LPalm
+    100022: Player_Rig_LPlatform
+    100024: Player_Rig_LThigh
+    100026: Player_Rig_LUpperarm
+    100028: Player_Rig_Neck
+    100030: Player_Rig_Pelvis
+    100032: Player_Rig_PelvisBone001
+    100034: Player_Rig_PelvisBone002
+    100036: Player_Rig_PelvisBone003
+    100038: Player_Rig_RCalf
+    100040: Player_Rig_RFoot
+    100042: Player_Rig_RForearm
+    100044: Player_Rig_Ribcage
+    100046: Player_Rig_RPalm
+    100048: Player_Rig_RPlatform
+    100050: Player_Rig_RThigh
+    100052: Player_Rig_RUpperarm
+    100054: Player_Rig_Spine
+    100056: Box001
+    400000: Box003
+    400002: Line002
+    400004: Object001
+    400006: Object002
+    400008: //RootNode
+    400010: Player_Rig_
+    400012: Player_Rig_Head
+    400014: Player_Rig_LCalf
+    400016: Player_Rig_LFoot
+    400018: Player_Rig_LForearm
+    400020: Player_Rig_LPalm
+    400022: Player_Rig_LPlatform
+    400024: Player_Rig_LThigh
+    400026: Player_Rig_LUpperarm
+    400028: Player_Rig_Neck
+    400030: Player_Rig_Pelvis
+    400032: Player_Rig_PelvisBone001
+    400034: Player_Rig_PelvisBone002
+    400036: Player_Rig_PelvisBone003
+    400038: Player_Rig_RCalf
+    400040: Player_Rig_RFoot
+    400042: Player_Rig_RForearm
+    400044: Player_Rig_Ribcage
+    400046: Player_Rig_RPalm
+    400048: Player_Rig_RPlatform
+    400050: Player_Rig_RThigh
+    400052: Player_Rig_RUpperarm
+    400054: Player_Rig_Spine
+    400056: Box001
+    2300000: Box003
+    2300002: Line002
+    2300004: Object001
+    2300006: Object002
+    2300008: Player_Rig_PelvisBone001
+    2300010: Player_Rig_PelvisBone002
+    2300012: Player_Rig_PelvisBone003
+    2300014: Box001
+    2300016: Player_Rig_Head
+    2300018: Player_Rig_LCalf
+    2300020: Player_Rig_LFoot
+    2300022: Player_Rig_LForearm
+    2300024: Player_Rig_LPalm
+    2300026: Player_Rig_LThigh
+    2300028: Player_Rig_LUpperarm
+    2300030: Player_Rig_Neck
+    2300032: Player_Rig_Pelvis
+    2300034: Player_Rig_RCalf
+    2300036: Player_Rig_RFoot
+    2300038: Player_Rig_RForearm
+    2300040: Player_Rig_Ribcage
+    2300042: Player_Rig_RPalm
+    2300044: Player_Rig_RThigh
+    2300046: Player_Rig_RUpperarm
+    2300048: Player_Rig_Spine
+    3300000: Box003
+    3300002: Line002
+    3300004: Object001
+    3300006: Object002
+    3300008: Player_Rig_PelvisBone001
+    3300010: Player_Rig_PelvisBone002
+    3300012: Player_Rig_PelvisBone003
+    3300014: Box001
+    3300016: Player_Rig_Head
+    3300018: Player_Rig_LCalf
+    3300020: Player_Rig_LFoot
+    3300022: Player_Rig_LForearm
+    3300024: Player_Rig_LPalm
+    3300026: Player_Rig_LThigh
+    3300028: Player_Rig_LUpperarm
+    3300030: Player_Rig_Neck
+    3300032: Player_Rig_Pelvis
+    3300034: Player_Rig_RCalf
+    3300036: Player_Rig_RFoot
+    3300038: Player_Rig_RForearm
+    3300040: Player_Rig_Ribcage
+    3300042: Player_Rig_RPalm
+    3300044: Player_Rig_RThigh
+    3300046: Player_Rig_RUpperarm
+    3300048: Player_Rig_Spine
+    4300000: Line002
+    4300002: Box003
+    4300004: Object002
+    4300006: Object001
+    4300008: Player_Rig_PelvisBone001
+    4300010: Player_Rig_PelvisBone002
+    4300012: Player_Rig_PelvisBone003
+    4300014: Box001
+    4300016: Player_Rig_Pelvis
+    4300018: Player_Rig_LThigh
+    4300020: Player_Rig_LCalf
+    4300022: Player_Rig_LFoot
+    4300024: Player_Rig_RThigh
+    4300026: Player_Rig_RCalf
+    4300028: Player_Rig_RFoot
+    4300030: Player_Rig_Spine
+    4300032: Player_Rig_Ribcage
+    4300034: Player_Rig_Neck
+    4300036: Player_Rig_Head
+    4300038: Player_Rig_LUpperarm
+    4300040: Player_Rig_LForearm
+    4300042: Player_Rig_LPalm
+    4300044: Player_Rig_RUpperarm
+    4300046: Player_Rig_RForearm
+    4300048: Player_Rig_RPalm
+    7400000: Take 001
+    7400002: Player_Rig_01
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Player_Rig_Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_LThigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_RThigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_LCalf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_RCalf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_LFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_RFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_LUpperarm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_RUpperarm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_LForearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_RForearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Player_Rig_RPalm
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Object002
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Player_Rig(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: .50000006, y: -.5, z: -.499999911, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_LPlatform
+      position: {x: -.342330307, y: -2.80241919e-09, z: .0743952692}
+      rotation: {x: .541675329, y: -.54167527, z: -.454519361, w: .454519451}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_Pelvis
+      position: {x: 6.39779429e-08, y: .627739608, z: -.0962531045}
+      rotation: {x: .49912703, y: -.500871539, z: -.499126941, w: .50087148}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_LThigh
+      position: {x: -.0230081938, y: .0627362803, z: .280023605}
+      rotation: {x: .00200541038, y: .999521375, z: -.00667466223, w: .030140657}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_LCalf
+      position: {x: -.354453295, y: 5.96046448e-08, z: 0}
+      rotation: {x: -.0430327244, y: .0176492408, z: .16470848, w: .985245049}
+      scale: {x: .99999994, y: .999999762, z: .999999881}
+      transformModified: 1
+    - name: Player_Rig_LFoot
+      position: {x: -.31408903, y: 2.86102278e-07, z: 3.24249271e-07}
+      rotation: {x: -.0509176329, y: -.0121914698, z: -.811393142, w: .582151115}
+      scale: {x: .999999702, y: 1.00000036, z: .99999994}
+      transformModified: 1
+    - name: Player_Rig_PelvisBone001
+      position: {x: -.0806581825, y: .0234362744, z: -.425654352}
+      rotation: {x: -5.34637792e-08, y: .707106829, z: .707106829, w: -5.33850724e-08}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_PelvisBone002
+      position: {x: -.0812963098, y: -.159464538, z: .194109276}
+      rotation: {x: -7.55535439e-08, y: 1, z: 1.29356119e-14, w: -5.56887869e-11}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_PelvisBone003
+      position: {x: .000614776625, y: .176193342, z: -2.76467276e-08}
+      rotation: {x: -2.13162821e-14, y: 1.31838825e-15, z: 1, w: -7.55535439e-08}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RThigh
+      position: {x: -.0230081175, y: .0627362803, z: -.280023605}
+      rotation: {x: .00200595334, y: .999521375, z: .00667465385, w: -.0301404204}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RCalf
+      position: {x: -.354453266, y: 5.96046448e-08, z: 0}
+      rotation: {x: .0430362262, y: -.0177017301, z: .16494289, w: .985204756}
+      scale: {x: 1.00000024, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RFoot
+      position: {x: -.314088941, y: -9.53674295e-09, z: 0}
+      rotation: {x: .050884787, y: .0122037977, z: -.811535418, w: .581955433}
+      scale: {x: 1.00000012, y: .999999344, z: 1.00000012}
+      transformModified: 1
+    - name: Player_Rig_Spine
+      position: {x: -.061079178, y: -.0046732137, z: -1.15981038e-08}
+      rotation: {x: 1.10254028e-08, y: -1.2519898e-08, z: .040516559, w: .999178886}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: Player_Rig_Ribcage
+      position: {x: -.560838521, y: 9.53674295e-09, z: 0}
+      rotation: {x: -1.47890402e-08, y: -5.98522387e-09, z: -.0422595069, w: .999106705}
+      scale: {x: .999999702, y: .999999702, z: 1}
+      transformModified: 1
+    - name: Object001
+      position: {x: -.0540901162, y: 9.53674295e-09, z: 4.54747341e-15}
+      rotation: {x: -2.38418579e-07, y: 5.71859048e-14, z: -2.38418579e-07, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_LUpperarm
+      position: {x: .0212118533, y: .0094597619, z: .327022612}
+      rotation: {x: 1.1870794e-05, y: .718957365, z: -1.29702275e-05, w: .695054173}
+      scale: {x: .99999994, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_LForearm
+      position: {x: -.562622726, y: -6.00814815e-07, z: -3.81469704e-07}
+      rotation: {x: 1.54767713e-06, y: .000680003723, z: 1.4964503e-06, w: .999999762}
+      scale: {x: .999999702, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_LPalm
+      position: {x: -.479528338, y: -1.91688537e-06, z: -1.52587882e-06}
+      rotation: {x: -.706864476, y: .0184154361, z: .0184177849, w: .706869364}
+      scale: {x: .999999106, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: Player_Rig_Neck
+      position: {x: .00811126735, y: .0239732731, z: -1.33606273e-08}
+      rotation: {x: -6.29810704e-10, y: -1.14730569e-09, z: .00506068626, w: .999987185}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Player_Rig_Head
+      position: {x: -.163309246, y: 9.53674295e-09, z: 0}
+      rotation: {x: 6.2981298e-10, y: 1.14730558e-09, z: -.0050606858, w: .999987185}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Object002
+      position: {x: -.0658825636, y: 1.90734859e-08, z: 1.52587887e-07}
+      rotation: {x: -2.38418579e-07, y: 5.68434189e-14, z: -2.38418579e-07, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RUpperarm
+      position: {x: .0212119296, y: .00945977215, z: -.327022612}
+      rotation: {x: -1.18707403e-05, y: -.718957424, z: -1.29701739e-05, w: .695054114}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RForearm
+      position: {x: -.562622726, y: -5.91278081e-07, z: 3.05175774e-07}
+      rotation: {x: 2.03903099e-07, y: -.000680528756, z: 8.6362644e-07, w: .999999762}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RPalm
+      position: {x: -.479528487, y: -6.6757201e-07, z: 6.10351549e-07}
+      rotation: {x: .706866741, y: -.0184170008, z: .0184179693, w: .706867039}
+      scale: {x: .999999821, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Player_Rig_RPlatform
+      position: {x: .342330307, y: -2.80243739e-09, z: .0743953735}
+      rotation: {x: .45451957, y: -.45451951, z: -.54167515, w: .54167521}
+      scale: {x: 1, y: .999999881, z: .99999994}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 
