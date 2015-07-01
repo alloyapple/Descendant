@@ -6,46 +6,84 @@ namespace pocketjam15.descendant
 {
 	public class UIController : MonoBehaviour 
 	{
-
+		
 		public GameObject ExitButton;
-
 		public GameObject VictoryScreen;
-
+		
 		public Slider _intervalIndicator;
-
-		PlayerController _playerController;
+		public Slider _heroHealth;
+		public Slider _enemyHealth;
+		
+		Ancestor _ancestor;
 		
 		void Start()
 		{
-			_playerController = GameContext.currentInstance.playerController;
+			_ancestor = GameContext.currentInstance.ancestor;
+			
 			VictoryScreen.SetActive (false);
+			
 			_intervalIndicator.value = 0;
+			_heroHealth.value = 1;
+			_enemyHealth.value = 1;
 		}
-
+		
 		void Awake()
 		{
 			GameContext.currentInstance.uiController = this;
 		}
-
+		
 		public void ExitGame()
 		{
 			Application.LoadLevel("Menu");
 		}
-
-		public void Ability(int abilityNum)
+		
+		public void ActivateAction(int actionNum)
 		{
-			_playerController.ActivateAbility(abilityNum);
+			switch (actionNum) {
+				case 1:
+				{
+					break;
+				}
+				case 2:
+				{
+					break;
+				}
+				case 3:
+				{
+					break;
+				}
+			}
 		}
-
+		
 		public void Victory()
 		{
 			VictoryScreen.SetActive (true);
 		}
-
+		
 		public void UpdateIntervalIndicator(float m_progress)
 		{
 			_intervalIndicator.value = m_progress;
 		}
-
+		
+		public void SetIntervalIndicatorState(bool active)
+		{
+			if(active)
+			{
+				
+			}else{
+				
+			}
+		}
+		
+		public void UpdateEnemyHealth(float health)
+		{
+			_enemyHealth.value = health;
+		}
+		
+		public void UpdateHeroHealth(float health)
+		{
+			_heroHealth.value = health;
+		}
+		
 	}
 }

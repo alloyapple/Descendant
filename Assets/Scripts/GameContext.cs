@@ -18,6 +18,8 @@ namespace pocketjam15.descendant
 		static GameContext _currentInstance;
 		
 		public Director director { get; set; }
+
+		public Ancestor ancestor { get; set; }
 		
 		public UIController uiController { get; set; }
 

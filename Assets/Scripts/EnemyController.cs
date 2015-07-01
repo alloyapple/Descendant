@@ -6,14 +6,15 @@ namespace pocketjam15.descendant
 {
 	public class EnemyController : MonoBehaviour {
 
-		private int startingHealth = 100;
-		private int health;
-		
-		public Slider HealthBar;
+		private float startingHealth = 1000f;
+		private float health;
+
+		UIController m_uiController;
 
 		void Start()
 		{
 			health = startingHealth;
+			m_uiController = GameContext.currentInstance.uiController;
 		}
 
 		void Awake()
@@ -21,12 +22,14 @@ namespace pocketjam15.descendant
 			GameContext.currentInstance.enemyController = this;
 		}
 
-		public void TakeDamage(int damage)
+		public void TakeDamage(float damage)
 		{
 			health = health - damage;
 
 			//Debug.Log(health+" / "+startingHealth);
-			HealthBar.value = (float)health/startingHealth;
+			//HealthBar.value = (float)health/startingHealth;
+
+			m_uiController.UpdateEnemyHealth(health);
 
 			if(health<=0){
 				Die();
