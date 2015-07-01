@@ -33,22 +33,37 @@ public class ActionType : MonoBehaviour
 	public float 	_coolDownTime;
 	public float	_currentCoolDownTime;
 
-	private GameObject m_ActionCaster;
-	private GameObject m_ActionReceiver;
-	private EntityMain m_ActionCasterEntity;
-	private EntityMain m_ActionReceiverEntity;
+	public GameObject _actionCaster;
+	public GameObject _actionReceiver;
+	private EntityMain m_actionCasterEntity;
+	private EntityMain m_actionReceiverEntity;
 
-	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
+//	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
+//	{
+//		// TODO: Have list for multiple receivers
+//
+//		_actionCaster = CasterGo;
+//		_actionReceiver = ReceiverGo;
+//
+//		if (_actionCaster != null && _actionReceiver != null) 
+//		{
+//			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain>();
+//			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain>();
+//
+//			Debug.Log("Set Caster and Receiver");
+//			
+//		}
+//	}
+
+	void Start()
 	{
-		// TODO: Have list for multiple receivers
-
-		m_ActionCaster = CasterGo;
-		m_ActionReceiver = ReceiverGo;
-
-		if (m_ActionCaster != null && m_ActionReceiver != null) 
+		if (_actionCaster != null && _actionReceiver != null) 
 		{
-			m_ActionCasterEntity = m_ActionCaster.GetComponent<EntityMain>();
-			m_ActionReceiverEntity = m_ActionCaster.GetComponent<EntityMain>();
+			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain>();
+			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain>();
+			
+			Debug.Log("Set Caster and Receiver");
+			
 		}
 	}
 
@@ -61,34 +76,34 @@ public class ActionType : MonoBehaviour
 		switch (currentAction) {
 		case ActionTypeName.DealDamage:
 			{
-				if (m_ActionReceiverEntity != null)
+				if (m_actionReceiverEntity != null)
 				{
-					m_ActionReceiverEntity.ApplyDamage(_damageAmount);
+					m_actionReceiverEntity.ApplyDamage(_damageAmount);
 				}
 				break;
 			}
 		case ActionTypeName.AddHealth:
 			{
-				if (m_ActionCasterEntity != null)
+				if (m_actionCasterEntity != null)
 				{
-					m_ActionCasterEntity.AddHealth(_healAmount);
+					m_actionCasterEntity.AddHealth(_healAmount);
 				}
 				break;
 			}
 		case ActionTypeName.AddArmor:
 			{
-				if (m_ActionCasterEntity != null)
+				if (m_actionCasterEntity != null)
 				{
-				m_ActionCasterEntity.AddArmor(_armorAdd);
+				m_actionCasterEntity.AddArmor(_armorAdd);
 				}
 				break;
 			}
 
 		case ActionTypeName.DetractArmor:
 			{
-				if (m_ActionReceiverEntity != null)
+				if (m_actionReceiverEntity != null)
 				{
-					m_ActionReceiverEntity.DetractArmor(_armorDetract);
+					m_actionReceiverEntity.DetractArmor(_armorDetract);
 				}
 				break;
 			}

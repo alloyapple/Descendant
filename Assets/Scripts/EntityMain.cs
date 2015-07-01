@@ -58,10 +58,10 @@ public class EntityWrapper
 	public ActionType _actionType;
 	public Ancestor	  _castingAncestor;
 
-	public EntityWrapper( EntityMain Entity, ActionType Action, Ancestor Caster )
+	public EntityWrapper( EntityMain Entity, ActionType Action ) // Ancestor Caster
 	{
 		_entity 			= Entity;
 		_actionType 		= Action;
-		_castingAncestor 	= Caster;
+//		_castingAncestor 	= Caster;
 	}
 }

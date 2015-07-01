@@ -13,11 +13,18 @@ namespace pocketjam15.descendant
 		public List<Ancestor>		_ancestorList;
 		public List<EntityWrapper> 	_actionList;
 		public Queue<EntityWrapper>	_actionQueue;
-		public GameObject			_playerGo;
+		public GameObject			_TestplayerGo;
+		public GameObject			_TestenemyGo;
+		public GameObject			_TestActionGo;
+		
 
 		private float m_currentInterval;	//how far into the current interval are we?
 		private bool m_instantAction;		//has the entity activated an instant action?
 		private bool m_queuedAction;		//has the entity activated queued action?
+
+		private EntityMain 			m_currentTestPlayerEntity;
+		private EntityMain 			m_currentTestEnemyEntity;
+		private ActionType			m_currentTestAction;
 		
 		UIController m_uiController;
 
@@ -26,12 +33,26 @@ namespace pocketjam15.descendant
 			ResetInterval(); //Set up initial interval information
 			m_uiController = GameContext.currentInstance.uiController;
 
-			_actionList = new List<EntityWrapper> ();
+			// TEST ONLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+			m_currentTestPlayerEntity = _TestplayerGo.GetComponent<EntityMain> ();
+			m_currentTestEnemyEntity = _TestenemyGo.GetComponent<EntityMain> ();
+			m_currentTestAction = _TestActionGo.GetComponent<ActionType> ();
+			
 
-			// TEST ONLY!
-			for (int i = 0; i<3; i++) {
-
-//				EntityWrapper newItem = new EntityWrapper(
+			if (m_currentTestPlayerEntity != null && m_currentTestEnemyEntity != null && m_currentTestAction != null) 
+			{
+				_actionList = new List<EntityWrapper> ();
+	
+				for (int i = 0; i < 3; i++) 
+				{
+					EntityWrapper newItem = new EntityWrapper( m_currentTestPlayerEntity, m_currentTestAction );
+					_actionList.Add(newItem);
+				}
+			} 
+			else 
+			{
+				Debug.LogWarning("There are no entities to Test with");
 			}
 		}
 
@@ -41,6 +62,8 @@ namespace pocketjam15.descendant
 		
 		void Update () {
 			RunInterval();
+			CollectInput();
+
 		}
 
 		private void ResetInterval()
@@ -69,7 +92,8 @@ namespace pocketjam15.descendant
 		{
 			m_currentInterval += Time.deltaTime;
 
-			m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
+			if(m_uiController != null)
+				m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
 
 			if (m_currentInterval >= _combatInterval)
 			{
@@ -81,8 +105,9 @@ namespace pocketjam15.descendant
 		private void CollectInput()
 		{
 			// TEST ONLY INPUT
-			if (Input.GetKeyUp (KeyCode.Space)) {
-
+			if (Input.GetKeyUp (KeyCode.Space)) 
+			{
+				ApplyQueuedActions();
 			}
 		}
 
