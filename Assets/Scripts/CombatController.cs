@@ -4,7 +4,9 @@ using System.Collections;
 namespace pocketjam15.descendant
 {
 	public class CombatController : MonoBehaviour {
-		
+
+		//TODO: process Action/Input List
+
 		public float _combatInterval;		//full interval used for this entity
 
 		private float m_currentInterval;	//how far into the current interval are we?
@@ -23,7 +25,6 @@ namespace pocketjam15.descendant
 			GameContext.currentInstance.combatController = this;
 		}
 		
-		// Update is called once per frame
 		void Update () {
 			RunInterval();
 		}
@@ -33,7 +34,7 @@ namespace pocketjam15.descendant
 			Debug.Log ("ResetInterval()");
 			m_currentInterval = 0f;
 			m_instantAction = false;
-			m_intervalAction = false;
+			m_queuedAction = false;
 		}
 
 		private void CompleteInterval()

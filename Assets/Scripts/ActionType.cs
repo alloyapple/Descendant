@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ActionType					// TODO: Extend to receive what object/enemy/player etc. it gets applied to and where it came from (ancestor) ?
+
+public class ActionType			
 {
-	
+	#region Variables and Constructors
+
 	public enum ActionTypeName
 	{
+		None,
 		DealDamage,
 		AddHealth,
 		AddArmor
@@ -15,23 +18,45 @@ public class ActionType					// TODO: Extend to receive what object/enemy/player 
 	public bool 	_instantApply;
 	
 	public int 		_attackStrength;
-	public int		_actionPoints;
-	public float 	_coolDownTime;
+	public int 		_attackStrengthOT;
+	public int		_healAmount;
+	public int		_healAmountOT;
+	public int		_actionPoints;				// TODO: Counter Calculate Cost of action
 	
+	public float 	_coolDownTime;
 	public float	_currentCoolDownTime;
+
+	private GameObject m_ActionCaster;
+	private GameObject m_ActionReceiver;
+
+	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
+	{
+		// TODO: Have list for multiple receivers
+		
+	}
+
+	#endregion
 	
 	#region MainMethods
 	
 	public void ProcessAction( ActionTypeName currentAction)
 	{
-		switch(currentAction)
-		{
-			case ActionTypeName.DealDamage:
+		switch (currentAction) {
+		case ActionTypeName.DealDamage:
 			{
-				ApplyDamage();
+				ApplyDamage ();
 				break;
 			}
-		
+		case ActionTypeName.AddHealth:
+			{
+				AddHealth ();
+				break;
+			}
+		case ActionTypeName.AddHealth:
+			{
+				AddArmor ();
+				break;
+			}
 		}
 	}
 	
@@ -41,7 +66,15 @@ public class ActionType					// TODO: Extend to receive what object/enemy/player 
 	
 	public void ApplyDamage()
 	{
-		
+														// TODO: receive objects to apply etc.
+	}
+	public void AddHealth()
+	{
+	
+	}
+	public void AddArmor()
+	{
+
 	}
 	
 	public bool CoolDownRunning()						// TODO: GFX tie in
