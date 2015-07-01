@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ActionType			
+public class ActionType : MonoBehaviour
 {
 	#region Variables and Constructors
 
