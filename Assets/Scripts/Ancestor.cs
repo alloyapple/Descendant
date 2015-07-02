@@ -50,8 +50,7 @@ public class Ancestor : MonoBehaviour {
 
 	public void Start()
 	{
-//		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
-		Debug.Log (m_uiController);
+		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
 
 		SetQueuedAction(_autoAction);
 		m_hasAction = false;
@@ -68,6 +67,7 @@ public class Ancestor : MonoBehaviour {
 
 	public void SetAction(ActionType pendingAction)
 	{
+		Debug.Log("SET THIS ACTION: "+pendingAction);
 		//TODO: When we have energy add check here
 		if (!m_hasAction)
 		{

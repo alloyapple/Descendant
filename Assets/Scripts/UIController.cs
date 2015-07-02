@@ -23,17 +23,13 @@ public class UIController : MonoBehaviour
 	void Start()
 	{
 		_ancestor = FindObjectOfType<AncestorSelection>().selectedAncestor;
-		
-		Debug.Log ("Selected Class: "+_ancestor);
-		Debug.Log ("Selected Class Icon: "+_ancestor._ancestorIcon);
 
 		VictoryScreen.SetActive (false);
 		
 		_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
-		
-		Debug.Log ("PlayerIcon"+_playerIcon.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite);
+
 		_playerIcon.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
 		_button1.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
 		_button2.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
@@ -52,6 +48,9 @@ public class UIController : MonoBehaviour
 		switch (actionNum) {
 			case 1:
 			{
+			Debug.Log("SET THIS ACTION: "+actionNum);
+			Debug.Log(_ancestor);
+				Debug.Log(_ancestor._action1);
 				_ancestor.SetAction(_ancestor._action1);
 				break;
 			}
