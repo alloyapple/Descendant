@@ -3,14 +3,15 @@ Shader "Particles/Alpha Blended (white texture)"
 Properties
 {
 	_MainTex ("Particle Texture", 2D) = "white" {}
-	_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
+	//_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
+	_Multiply ("Multiply", Range(0.1,8.0)) = 1.0
 }
 
 Category
 {
 	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
 	Blend SrcAlpha OneMinusSrcAlpha
-	Cull Off Lighting Off ZWrite Off Fog { Color (1,1,1,1) }
+	Cull Off Lighting Off ZWrite Off Fog {Mode Off  }
 	
 	SubShader {
 		Pass {
@@ -35,9 +36,7 @@ Category
 				float4 vertex : POSITION;
 				fixed4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
-				#ifdef SOFTPARTICLES_ON
-				float4 projPos : TEXCOORD1;
-				#endif
+
 			};
 			
 			float4 _MainTex_ST;
@@ -46,10 +45,7 @@ Category
 			{
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
-				#ifdef SOFTPARTICLES_ON
-				o.projPos = ComputeScreenPos (o.vertex);
-				COMPUTE_EYEDEPTH(o.projPos.z);
-				#endif
+
 				o.color = v.color;
 				o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
 				return o;
@@ -57,18 +53,17 @@ Category
 
 			sampler2D _CameraDepthTexture;
 			float _InvFade;
+			float _Multiply; 
 			
 			fixed4 frag (v2f i) : COLOR
 			{
-				#ifdef SOFTPARTICLES_ON
-				float sceneZ = LinearEyeDepth (UNITY_SAMPLE_DEPTH(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos))));
-				float partZ = i.projPos.z;
-				float fade = saturate (_InvFade * (sceneZ-partZ));
-				i.color.a *= fade;
-				#endif
+
+				
+				_Multiply *= i.color.a;
 				
 				fixed prev = tex2D(_MainTex, i.texcoord).r;
-				return lerp(half4(i.color.rgb, 0), i.color, prev * i.color.a);
+				//return lerp(half4(i.color.rgb , 0), i.color + prev * i.color.a * _Multiply, prev * i.color.a);
+				return lerp(half4(i.color.rgb , 0), i.color + prev * _Multiply, prev * i.color.a);
 			}
 			ENDCG 
 		}

@@ -4,12 +4,14 @@ public class NoiseTransformMove : MonoBehaviour
 {
 	public float noiseTime = 1f;
 	public float noisePhase = 1f;
+	public bool randomPhaseOnStartup = false;
 	public Vector3 Axis;
 	private Vector3 pos;
 
 	private void Start()
 	{
 		pos = transform.localPosition;
+		if (randomPhaseOnStartup) noisePhase = Random.value;
 	}
 	
 	private void Update()
