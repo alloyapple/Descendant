@@ -21,6 +21,8 @@ public class ClassSelect : MonoBehaviour
 	private void Start()
 	{
 		ClearAllVisuals();
+		_currentClass = null;
+		_ancestorSelection.selectedAncestor = null;
 	}
 
 	public void LoadScene(string sceneName)

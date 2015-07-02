@@ -23,6 +23,9 @@ public class UIController : MonoBehaviour
 	void Start()
 	{
 		_ancestor = FindObjectOfType<AncestorSelection>().selectedAncestor;
+		
+		Debug.Log ("Selected Class: "+_ancestor);
+		Debug.Log ("Selected Class Icon: "+_ancestor._ancestorIcon);
 
 		VictoryScreen.SetActive (false);
 		
@@ -30,16 +33,18 @@ public class UIController : MonoBehaviour
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
 		
-		_playerIcon.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
-		_button1.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
-		_button2.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
-		_button3.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action3._actionIcon;
+		Debug.Log ("PlayerIcon"+_playerIcon.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite);
+		_playerIcon.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
+		_button1.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
+		_button2.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
+		_button3.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action3._actionIcon;
 
 	}
 	
 	public void ExitGame()
 	{
 		Application.LoadLevel("Menu");
+		Destroy(FindObjectOfType<AncestorSelection>());
 	}
 	
 	public void ActivateAction(int actionNum)
