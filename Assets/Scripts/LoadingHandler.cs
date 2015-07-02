@@ -6,23 +6,20 @@ namespace pocketjam15.descendant
 {
 	public class LoadingHandler : MonoBehaviour
 	{
-		
-		public const string GAME_SCENE = "Game";
-		
 		public Slider loadingBar;
 		public GameObject loadingImage;
-
+		
 		private AsyncOperation async;
 
-		public void LoadScene()
+		public void LoadScene(string sceneName)
 		{
 			loadingImage.SetActive(true);
-			StartCoroutine(LoadGameScene());
+			StartCoroutine(LoadGameScene(sceneName));
 		}
 		
-		IEnumerator LoadGameScene()
+		IEnumerator LoadGameScene(string sceneName)
 		{
-			async = Application.LoadLevelAsync(GAME_SCENE);
+			async = Application.LoadLevelAsync(sceneName);
 			while (!async.isDone)
 			{
 				loadingBar.value = async.progress;

@@ -12,7 +12,10 @@ namespace pocketjam15.descendant
 		
 		public Slider _intervalIndicator;
 		public Slider _heroHealth;
+		public Slider _heroEnergy;
 		public Slider _enemyHealth;
+
+		public Image _playerIcon;
 		
 		Ancestor _ancestor;
 		
