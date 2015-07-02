@@ -29,7 +29,11 @@ public class ActionType : MonoBehaviour
 	public int		_armorDetractOT;
 
 	public int		_actionPoints;				// TODO: Counter Calculate Cost of action
-	
+
+	public Sprite	_actionIcon;
+
+	public int		_energyCost;
+
 	public float 	_coolDownTime;
 	public float	_currentCoolDownTime;
 
@@ -37,6 +41,8 @@ public class ActionType : MonoBehaviour
 	public GameObject _actionReceiver;
 	private EntityMain m_actionCasterEntity;
 	private EntityMain m_actionReceiverEntity;
+
+
 
 //	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
 //	{
@@ -94,7 +100,7 @@ public class ActionType : MonoBehaviour
 			{
 				if (m_actionCasterEntity != null)
 				{
-				m_actionCasterEntity.AddArmor(_armorAdd);
+					m_actionCasterEntity.AddArmor(_armorAdd);
 				}
 				break;
 			}
