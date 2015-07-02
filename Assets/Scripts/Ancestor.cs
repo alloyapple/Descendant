@@ -14,6 +14,8 @@ public class Ancestor : MonoBehaviour {
 		DPSRange
 	}
 
+	public AncestorClasses	_playerAncestor;
+
 	public GameObject 	_ancestorGo;				// handle gfx etc.
 	public int 			_attackPoints;
 	public int			_armorAddition;
@@ -27,6 +29,10 @@ public class Ancestor : MonoBehaviour {
 	public ActionType	_action1;
 	public ActionType	_action2;
 	public ActionType	_action3;
+
+	public ActionType	_actionToPassCombat;
+
+	// TODO: List for actionTypes
 
 	UIController m_uiController;
 	

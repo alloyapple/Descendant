@@ -5,10 +5,11 @@ using System.Collections.Generic;
 
 public class HeroController : MonoBehaviour {
 
-	public int _health;
-	public int _armor;
-	public int _damage;
-	public int _actionPoints;
+	public int 		_health;
+	public int 		_armor;
+	public int 		_damage;
+	public int 		_actionPoints;
+	public float 	_attackRate;
 
 	EnemyController _enemyController;
 
@@ -32,6 +33,12 @@ public class HeroController : MonoBehaviour {
 		_enemyController.TakeDamage(5);
 	}
 
+	public void CompileStatsFromAncestors()
+	{
+		// get all active ancestor players
+	}
+
 	// TODO: Wrapper/Class needed for an attack, like an attack package
+	// TODO: Add Compile Values
 
 }
