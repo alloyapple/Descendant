@@ -32,6 +32,8 @@ public class ActionType : MonoBehaviour
 
 	public Sprite	_actionIcon;
 
+	public int		_energyCost;
+
 	public float 	_coolDownTime;
 	public float	_currentCoolDownTime;
 
@@ -98,7 +100,7 @@ public class ActionType : MonoBehaviour
 			{
 				if (m_actionCasterEntity != null)
 				{
-				m_actionCasterEntity.AddArmor(_armorAdd);
+					m_actionCasterEntity.AddArmor(_armorAdd);
 				}
 				break;
 			}
