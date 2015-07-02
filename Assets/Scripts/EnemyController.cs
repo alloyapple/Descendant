@@ -12,12 +12,7 @@ public class EnemyController : MonoBehaviour {
 	void Start()
 	{
 		health = startingHealth;
-		m_uiController = GameContext.currentInstance.uiController;
-	}
-
-	void Awake()
-	{
-		GameContext.currentInstance.enemyController = this;
+		m_uiController = FindObjectOfType<UIController>();
 	}
 
 	public void TakeDamage(float damage)
@@ -38,7 +33,7 @@ public class EnemyController : MonoBehaviour {
 	public void Die()
 	{
 		health = 0;
-		GameContext.currentInstance.director.Victory();
+		FindObjectOfType<Director>().Victory();
 	}
 
 }

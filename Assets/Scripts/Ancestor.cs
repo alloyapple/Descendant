@@ -48,7 +48,9 @@ public class Ancestor : MonoBehaviour {
 
 	public void Start()
 	{
-		m_uiController = GameContext.currentInstance.uiController;
+		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+		Debug.Log (m_uiController);
+
 		SetQueuedAction(_autoAction);
 		m_hasAction = false;
 

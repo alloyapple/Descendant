@@ -9,13 +9,12 @@ public class Director : MonoBehaviour
 	
 	void Start()
 	{
-		_uiController = GameContext.currentInstance.uiController;
+		_uiController = FindObjectOfType<UIController>();
 	}
 
 	void Awake()
 	{
 		Application.LoadLevelAdditive("UI");
-		GameContext.currentInstance.director = this;
 	}
 
 

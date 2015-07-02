@@ -19,18 +19,13 @@ public class UIController : MonoBehaviour
 	
 	void Start()
 	{
-		_ancestor = GameContext.currentInstance.ancestor;
-		
+		_ancestor = FindObjectOfType<AncestorSelection>().selectedAncestor;
+
 		VictoryScreen.SetActive (false);
 		
 		_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
-	}
-	
-	void Awake()
-	{
-		GameContext.currentInstance.uiController = this;
 	}
 	
 	public void ExitGame()
