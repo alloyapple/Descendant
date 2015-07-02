@@ -22,7 +22,15 @@ public class UIController : MonoBehaviour
 	
 	void Start()
 	{
-		_ancestor = FindObjectOfType<AncestorSelection>().selectedAncestor;
+		//_ancestor = FindObjectOfType<Ancestor>();
+		foreach(Ancestor ancestor in FindObjectsOfType<Ancestor>())
+		{
+			if (ancestor._isPlayer==true)
+			{
+				_ancestor = ancestor;
+			}
+		}
+		_ancestor.PassUI(this);
 
 		VictoryScreen.SetActive (false);
 		

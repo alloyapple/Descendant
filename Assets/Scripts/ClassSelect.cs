@@ -16,25 +16,22 @@ public class ClassSelect : MonoBehaviour
 
 	public AncestorSelection _ancestorSelection;
 
-	private Ancestor _currentClass;
+	private int _currentClass;
 
 	private void Start()
 	{
 		ClearAllVisuals();
-		_currentClass = null;
-		_ancestorSelection.selectedAncestor = null;
+		_currentClass = 0;
+		_ancestorSelection.selectedAncestor = 0;
 	}
 
 	public void LoadScene(string sceneName)
 	{
-		if(_currentClass != null){
+		if(_currentClass != 0){
 			loadingImage.SetActive(true);
 			StartCoroutine(LoadGameScene(sceneName));
 
-			Ancestor newAncestor = new Ancestor();
-			newAncestor = _currentClass;
-
-			_ancestorSelection.selectedAncestor = newAncestor;
+			_ancestorSelection.selectedAncestor = _currentClass;
 		}
 	}
 	
@@ -48,11 +45,9 @@ public class ClassSelect : MonoBehaviour
 		}
 	}
 
-	public void SetHero(Ancestor ancestor)
+	public void SetHero(int ancestorNum)
 	{
-
-		_currentClass = ancestor;
-
+		_currentClass = ancestorNum;
 	}
 
 	public void UpdateButtonVisual(GameObject selectedButton)

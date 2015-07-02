@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Ancestor : MonoBehaviour {
 
@@ -31,6 +32,8 @@ public class Ancestor : MonoBehaviour {
 	public ActionType	_action1;
 	public ActionType	_action2;
 	public ActionType	_action3;
+
+	public bool			_isPlayer;
 	
 	public Sprite	_ancestorIcon;
 
@@ -42,7 +45,7 @@ public class Ancestor : MonoBehaviour {
 
 	// TODO: List for actionTypes
 
-	UIController m_uiController;
+	public UIController _uiController;
 	
 	public float _combatInterval; //full interval used for this entity
 
@@ -52,12 +55,18 @@ public class Ancestor : MonoBehaviour {
 
 	public void Start()
 	{
-		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+
 
 		SetQueuedAction(_autoAction);
 		m_hasAction = false;
 
+
 		RegisterWithControllers ();
+	}
+
+	public void PassUI(UIController ui)
+	{
+		_uiController = ui;
 	}
 	
 	void Update () 
@@ -110,14 +119,15 @@ public class Ancestor : MonoBehaviour {
 
 	private void RunInterval()
 	{
-		//Debug.Log ("RunInterval()");
-		m_currentInterval += Time.deltaTime;
-		
-//		m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
-		
-		if (m_currentInterval >= _combatInterval)
+		if(_uiController!=null)
 		{
-			CompleteInterval();
+			m_currentInterval += Time.deltaTime;
+			_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
+			
+			if (m_currentInterval >= _combatInterval)
+			{
+				CompleteInterval();
+			}
 		}
 	}
 
@@ -145,7 +155,9 @@ public class Ancestor : MonoBehaviour {
 
 	public void RegisterWithControllers()
 	{
+		Debug.Log("RegisterWithControllers()");
 		m_currentCombatController = FindObjectOfType<CombatController>();
+		Debug.Log (m_currentCombatController);
 		m_currentHeroController = FindObjectOfType<HeroController> ();
 
 		if (m_currentCombatController == null || m_currentHeroController == null) {

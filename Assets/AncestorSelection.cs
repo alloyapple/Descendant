@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AncestorSelection : MonoBehaviour {
 
-	public Ancestor selectedAncestor;
+	public int selectedAncestor;
 
 	void Awake ()
 	{
