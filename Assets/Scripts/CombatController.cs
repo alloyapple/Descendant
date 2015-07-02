@@ -150,7 +150,17 @@ public class CombatController : MonoBehaviour {
 
 	private void ApplyEnemyAction()
 	{
-
+		if (_enemyActionQueue.Count > 0) 
+		{
+			ActionType currentAction = _enemyActionQueue.Dequeue();
+			
+			currentAction.SetCasterReceiver( currentAction._actionCaster, _HeroMain.gameObject );
+			currentAction.ProcessAction( currentAction._type );
+		} 
+		else 
+		{
+			Debug.LogWarning("No Actions in Queue");
+		}
 	}
 
 //	public void AddActionToQueue( EntityWrapper actionToAdd)
