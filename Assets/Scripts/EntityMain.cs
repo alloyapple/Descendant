@@ -50,6 +50,11 @@ public class EntityMain : MonoBehaviour {
 			_armor -= amount;
 		}
 	}
+
+	public void Death()
+	{
+		// erase object from list
+	}
 }
 
 //public class EntityWrapper
