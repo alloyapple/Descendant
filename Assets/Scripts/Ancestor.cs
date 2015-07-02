@@ -31,6 +31,7 @@ public class Ancestor : MonoBehaviour {
 	public ActionType	_action3;
 
 	public ActionType	_actionToPassCombat;
+	private ActionType	m_queuedAction;
 
 	// TODO: List for actionTypes
 
@@ -38,34 +39,20 @@ public class Ancestor : MonoBehaviour {
 	
 	public float _combatInterval; //full interval used for this entity
 
-	private EntityMain target;
-
-	private float m_currentInterval; //how far into the current interval are we?
-
-	private bool m_hasInstant; //has the entity activated an instant action?
-	private ActionType m_instantAction; 
-
-	private bool m_hasQueued; //has the entity activated a queued action?
-	private ActionType m_queuedAction;
+	private EntityMain	m_target;
+	private float 		m_currentInterval; //how far into the current interval are we?
+	private bool 		m_hasAction; //has the entity activated an action?
 
 	public void Start()
 	{
 		m_uiController = GameContext.currentInstance.uiController;
+		SetQueuedAction(_autoAction);
+		m_hasAction = false;
 	}
 
 	public void UpdateAncestorStats()
 	{
 		// feeds in any values that are relevant to a stat change that then the player can execute
-	}
-
-	public void InstaAttack()
-	{
-
-	}
-
-	public void QueuedAttack()
-	{
-
 	}
 
 	public bool CriticalHit()
@@ -80,52 +67,54 @@ public class Ancestor : MonoBehaviour {
 	{
 		RunInterval();
 	}
-
-	public void ActivateAutoAction()
+	public void SetAction(ActionType pendingAction)
 	{
-		Debug.Log("BOOM! Auto Attack");
-		//process action
+		//TODO: When we have energy add check here
+		if (!m_hasAction)
+		{
+			//No action has yet been set
+			m_hasAction = true;
+
+			if(pendingAction._instantApply)
+			{
+				//We have an instant action
+				ActivateAction(pendingAction);
+			}
+			else
+			{
+				//We have a queued action
+				SetQueuedAction(pendingAction);
+			}
+		}
+
 	}
 
-	public void ActivateQueuedAction()
+	public void SetQueuedAction(ActionType action)
 	{
-		Debug.Log("POW! QUEUED Attack");
-		//process action
-	}
-
-	public void ActivateInstantAction()
-	{
-		Debug.Log("BAMF! Instant Attack");
-		m_hasInstant = true;
-		//process action
-	}
-
-	public void QueueAction(ActionType action)
-	{
-		m_hasQueued = true;
 		m_queuedAction = action;
 	}
 
+	public void ActivateAction(ActionType action)
+	{
+		Debug.Log("POW! Attack");
+		//Activate the player action
+		_actionToPassCombat = action;
+	}
+	
 	private void ResetInterval()
 	{
-		//Debug.Log ("ResetInterval()");
+		m_hasAction = false;
 		m_currentInterval = 0f;
-		m_hasInstant = false;
-		m_hasQueued = false;
+		SetQueuedAction(_autoAction);
 	}
 	
 	private void CompleteInterval()
 	{
-		//Debug.Log ("CompleteInterval()");
-		if (m_queuedAction)
+		if(_actionToPassCombat==null)
 		{
-			ActivateQueuedAction();
+			//No action has been activated yet - ie. no instant action!
+			ActivateAction(m_queuedAction);
 		}
-		else if(!m_instantAction)
-		{
-			ActivateAutoAction();
-		}
-		
 		ResetInterval();
 	}
 	
