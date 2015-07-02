@@ -1,36 +1,32 @@
-namespace pocketjam15.descendant
+
+public class GameContext
 {
-
-	public class GameContext
+	public static GameContext currentInstance
 	{
-		public static GameContext currentInstance
+		get
 		{
-			get
+			if (_currentInstance == null)
 			{
-				if (_currentInstance == null)
-				{
-					_currentInstance = new GameContext();
-				}
-				
-				return _currentInstance;
+				_currentInstance = new GameContext();
 			}
+			
+			return _currentInstance;
 		}
-		static GameContext _currentInstance;
-		
-		public Director director { get; set; }
-
-		public Ancestor ancestor { get; set; }
-		
-		public UIController uiController { get; set; }
-
-		public CombatController combatController { get; set;}
-
-		public HeroController descendantController { get; set;}
-		
-		public PlayerController playerController { get; set; }
-		
-		public EnemyController enemyController { get; set; }
-
 	}
+	static GameContext _currentInstance;
+	
+	public Director director { get; set; }
+
+	public Ancestor ancestor { get; set; }
+	
+	public UIController uiController { get; set; }
+
+	public CombatController combatController { get; set;}
+
+	public HeroController descendantController { get; set;}
+	
+	public PlayerController playerController { get; set; }
+	
+	public EnemyController enemyController { get; set; }
 
 }

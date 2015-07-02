@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-namespace PocketShooter
-{
-
 public class NoiseTransformMove : MonoBehaviour
 {
 	public float noiseTime = 1f;
@@ -26,6 +23,4 @@ public class NoiseTransformMove : MonoBehaviour
 
 		transform.localPosition = pos + Vector3.Scale(noise, Axis);
 	}
-}
-
 }
