@@ -25,7 +25,7 @@ public class GameContext
 
 	public HeroController descendantController { get; set;}
 	
-	public PlayerController playerController { get; set; }
+//	public PlayerController playerController { get; set; }
 	
 	public EnemyController enemyController { get; set; }
 
