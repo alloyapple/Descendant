@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour {
 	{
 		if (_enemyList.Count == 0) 
 		{
-			Debug.LogWarning ("No Enemies in EnemySpawner List, please create a prefab");
+			Debug.LogWarning ("No Enemies in EnemySpawner List, please populate and maybe create a prefab");
 		}
 		else
 		{
@@ -33,26 +33,37 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		_combatController = FindObjectOfType<CombatController>();
-	}
-	
-	void Update () 
-	{
-	
+
+		if (_combatController == null)
+			Debug.LogWarning ("Enemy Manager couldn't find a combatcontroller!");
+
+		SpawnNewEnemy ();
 	}
 
-	void SpawnNewEnemy()
+	public void SpawnNewEnemy()
 	{
 //		if (m_currentEnemy == null || m_currentEnemySpawnQueue.Count > 0) 
 		if (m_currentEnemySpawnQueue.Count > 0) {
 			Debug.Log ("Spawning new Enemy");
 
 			GameObject object2Spawn = m_currentEnemySpawnQueue.Dequeue ();
+			EnemyController object2SpawnController = object2Spawn.GetComponent<EnemyController>();
+
+			if ( object2SpawnController != null )
+			{
+				object2SpawnController._combatController = _combatController;
+				object2SpawnController._enemyManger = this;
+			}
+			else
+			{
+				Debug.LogWarning("There is no EnemyController Assigned to this enemy: " + object2Spawn.name);		// TODO: do this check on start
+			}
 
 			GameObject.Instantiate ( object2Spawn, _enemyPosition.position, Quaternion.identity );
-
-		} else {
+		} 
+		else 
+		{
 			Debug.Log ("No More Enemies to Spawn");
-			
 		}
 	}
 }
