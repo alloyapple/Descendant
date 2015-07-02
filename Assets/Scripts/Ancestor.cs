@@ -11,7 +11,9 @@ public class Ancestor : MonoBehaviour {
 		Warrior,
 		Healer,
 		DPSMelee,
-		DPSRange
+		DPSRange,
+		Enemy01,
+		Enemy02
 	}
 
 	public AncestorClasses	_playerAncestor;
@@ -99,7 +101,7 @@ public class Ancestor : MonoBehaviour {
 		//Activate the player action
 		_actionToPassCombat = action;	// TODO: just pass action straight on to combatcontroller
 
-		m_currentCombatController.AddActionToQueue (_actionToPassCombat);
+		m_currentCombatController.AddActionToPlayerQueue (_actionToPassCombat);
 	}
 
 #endregion

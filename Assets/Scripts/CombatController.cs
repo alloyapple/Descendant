@@ -7,13 +7,13 @@ public class CombatController : MonoBehaviour {
 	//TODO: process Action/Input List
 	//TODO: let attackrate set combatInterval
 
-	public float _combatInterval;		//full interval used for this entity
+	public float _combatIntervalHero;		//full interval used for this entity
 
 	public List<Ancestor>		_ancestorList;
 	public List<EntityWrapper> 	_actionList;
 //	public Queue<EntityWrapper>	_actionQueue;
 	public Queue<ActionType>	_actionQueue;
-	public Queue<EntityMain>	_enemyQueue;	// TODO: add dequeue method when enemy dies
+	public Queue<ActionType>	_enemyActionQueue;	// TODO: add dequeue method when enemy dies
 	
 	public GameObject			_TestplayerGo;
 	public GameObject			_TestenemyGo;	// TODO: Find Enemy, or spawn enemy and add to combatController
@@ -39,13 +39,13 @@ public class CombatController : MonoBehaviour {
 //		m_uiController = GameContext.currentInstance.uiController;
 //		_actionQueue = new Queue<EntityWrapper> ();
 		_actionQueue = new Queue<ActionType> ();
-		_enemyQueue = new Queue<EntityMain> ();
+		_enemyActionQueue = new Queue<ActionType> ();
 
 		_HeroMain = FindObjectOfType<HeroController> ();
 
 		if (_HeroMain != null) 
 		{
-			_combatInterval = _HeroMain._attackRate;
+			_combatIntervalHero = _HeroMain._attackRate;
 		} 
 		else 
 		{
@@ -116,7 +116,7 @@ public class CombatController : MonoBehaviour {
 //		if(m_uiController != null)
 //			m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
 
-		if (m_currentInterval >= _combatInterval)
+		if (m_currentInterval >= _combatIntervalHero)
 		{
 			CompleteInterval();
 			ApplyQueuedAction();
@@ -148,13 +148,22 @@ public class CombatController : MonoBehaviour {
 		}
 	}
 
+	private void ApplyEnemyAction()
+	{
+
+	}
+
 //	public void AddActionToQueue( EntityWrapper actionToAdd)
 //	{
 //		_actionQueue.Enqueue (actionToAdd);
 //	}
-	public void AddActionToQueue( ActionType actionToAdd)
+	public void AddActionToPlayerQueue( ActionType actionToAdd)
 	{
 		_actionQueue.Enqueue (actionToAdd);
+	}
+	public void AddActionToEnemyQueue( ActionType actionToAdd)
+	{
+		_enemyActionQueue.Enqueue (actionToAdd);
 	}
 
 

@@ -9,7 +9,7 @@ public class HeroController : MonoBehaviour {
 	public int 		_armor;
 	public int 		_damage;
 	public int 		_actionPoints;
-	public float 	_attackRate;
+	public float 	_attackRate;					// TODO: Inherit from Ancestor
 
 	public List<Ancestor>	_ancestorList;			// TODO: Possible wrap layer for ancestor class to manage multiple players
 	public List<EntityMain> _enemyList;				
@@ -59,6 +59,12 @@ public class HeroController : MonoBehaviour {
 					_armor += currentItem._armorAddition;
 					_health += currentItem._healthAddition;
 				}
+
+				_localEntityMain._health = _health;
+				_localEntityMain._armor = _armor;
+
+				Debug.Log("Updated Hero states based on Ancestors");
+				
 			}
 			else
 			{
