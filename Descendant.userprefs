@@ -5,7 +5,7 @@
       <File FileName="Assets\Scripts\ParticleSortingLayer.cs" Line="4" Column="1" />
       <File FileName="Assets\Shader\Descendant_Player_Matcap.shader" Line="1" Column="1" />
       <File FileName="Assets\Shader\Particle AlphaBlended WhiteTexture.shader" Line="1" Column="1" />
-      <File FileName="Assets\Shader\Particle AlphaBlended Scroll Dist WhiteTexture.shader" Line="12" Column="22" />
+      <File FileName="Assets\Shader\Particle AlphaBlended Scroll Dist WhiteTexture.shader" Line="22" Column="10" />
       <File FileName="Assets\Scripts\SetVertexColors.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DDSSortingLayer.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\DDSSortingLayerEditor.cs" Line="29" Column="2" />

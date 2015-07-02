@@ -9,7 +9,9 @@ Properties
 	_DistortionAmount ("DistAmount", Float) = 1.0
 	_Scrolltime ("ScrollTime", Float) = 1.0
 	_Offset ("ShieldActive", Range(0.0,1.0)) = 1.0
-	_Scale ("ShieldScale", Range(0.0,1.0)) = 1.0
+	_Scale ("ShieldScale", Range(0.1,8.0)) = 1.0
+	_dirX ("dir X", Range(0.0,1.0)) = 1.0
+	_dirY ("dir Y", Range(0.0,1.0)) = 1.0
 	
 }
 
@@ -17,7 +19,7 @@ Category
 {
 	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
 	Blend SrcAlpha OneMinusSrcAlpha
-	Cull Off Lighting Off ZWrite Off Fog { Mode Off }
+	Cull Front Lighting Off ZWrite Off Fog { Mode Off }
 	
 	SubShader {
 		Pass {
@@ -47,7 +49,7 @@ Category
 				float2 texcoord2 : TEXCOORD2;
 
 			};
-			float _InvFade, _DistortionAmount, _Scrolltime, _Offset;
+			float _InvFade, _DistortionAmount, _Scrolltime, _Offset, _Scale, _dirX, _dirY;
 			float4 _MainTex_ST;
 			float4 _Dist_ST;
 
@@ -58,7 +60,7 @@ Category
 
 				o.color = v.color;
 				o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
-				o.texcoord2 = TRANSFORM_TEX(v.texcoord,_Dist) + _Time.x * _Scrolltime ;
+				o.texcoord2 = TRANSFORM_TEX(v.texcoord,_Dist) + _Time.x * _Scrolltime * float2(_dirX,_dirY);
 				return o;
 			}
 
@@ -72,11 +74,11 @@ Category
 				
 				_Multiply *= i.color.a;
 				fixed4 dist = tex2D(_Dist, i.texcoord2);
-				fixed prev = tex2D(_MainTex, i.texcoord + dist.r * _DistortionAmount).r;
+				fixed prev = tex2D(_MainTex, i.texcoord + dist.r * _DistortionAmount - (_DistortionAmount * 0.5f)).r;
 				fixed pulse = dist.g * prev;
-				prev += pulse;
+				prev *= pulse;
 				
-				prev *= pow(saturate( i.texcoord.y + _Offset - 0.5), 8) ;
+				prev *= pow(saturate( i.texcoord.y + _Offset - 0.5), _Scale) ;
 				
 				//return lerp(half4(i.color.rgb , 0), i.color + prev * i.color.a * _Multiply, prev * i.color.a);
 				return lerp(half4(i.color.rgb , 0), i.color + prev * _Multiply, prev * i.color.a);
