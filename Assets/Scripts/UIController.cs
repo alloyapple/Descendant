@@ -14,23 +14,27 @@ public class UIController : MonoBehaviour
 	public Slider _enemyHealth;
 
 	public Image _playerIcon;
-	
+	public Image _button1;
+	public Image _button2;
+	public Image _button3;
+
 	Ancestor _ancestor;
 	
 	void Start()
 	{
-		_ancestor = GameContext.currentInstance.ancestor;
-		
+		_ancestor = FindObjectOfType<AncestorSelection>().selectedAncestor;
+
 		VictoryScreen.SetActive (false);
 		
 		_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
-	}
-	
-	void Awake()
-	{
-		GameContext.currentInstance.uiController = this;
+		
+		_playerIcon.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
+		_button1.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
+		_button2.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
+		_button3.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action3._actionIcon;
+
 	}
 	
 	public void ExitGame()
@@ -43,14 +47,17 @@ public class UIController : MonoBehaviour
 		switch (actionNum) {
 			case 1:
 			{
+				_ancestor.SetAction(_ancestor._action1);
 				break;
 			}
 			case 2:
 			{
+				_ancestor.SetAction(_ancestor._action2);
 				break;
 			}
 			case 3:
 			{
+				_ancestor.SetAction(_ancestor._action3);
 				break;
 			}
 		}

@@ -46,7 +46,7 @@ public class ActionType : MonoBehaviour
 
 //	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
 //	{
-//		// TODO: Have list for multiple receivers
+
 //
 //		_actionCaster = CasterGo;
 //		_actionReceiver = ReceiverGo;
@@ -63,14 +63,7 @@ public class ActionType : MonoBehaviour
 
 	void Start()
 	{
-		if (_actionCaster != null && _actionReceiver != null) 
-		{
-			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain>();
-			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain>();
-			
-			Debug.Log("Set Caster and Receiver");
-			
-		}
+		SetCasterReceiver (_actionCaster, _actionReceiver);
 	}
 
 	#endregion
@@ -85,6 +78,7 @@ public class ActionType : MonoBehaviour
 				if (m_actionReceiverEntity != null)
 				{
 					m_actionReceiverEntity.ApplyDamage(_damageAmount);
+					Debug.Log ("Damage Dealt to: " + _actionReceiver.name); 
 				}
 				break;
 			}
@@ -93,6 +87,7 @@ public class ActionType : MonoBehaviour
 				if (m_actionCasterEntity != null)
 				{
 					m_actionCasterEntity.AddHealth(_healAmount);
+					Debug.Log ("Health added to: " + _actionCaster.name); 
 				}
 				break;
 			}
@@ -101,6 +96,7 @@ public class ActionType : MonoBehaviour
 				if (m_actionCasterEntity != null)
 				{
 					m_actionCasterEntity.AddArmor(_armorAdd);
+					Debug.Log ("Armor added to: " + _actionCaster.name); 
 				}
 				break;
 			}
@@ -134,6 +130,35 @@ public class ActionType : MonoBehaviour
 			return false;
 		}
 		return false;
+	}
+
+	public void SetCasterReceiver(GameObject caster, GameObject receiver)
+	{
+		// TODO: Have list for multiple receivers
+
+		if (_actionCaster != caster) 
+		{
+			_actionCaster = caster;
+		}
+		if (_actionReceiver != receiver) 
+		{
+			_actionReceiver = receiver;
+		}
+
+//		_actionCaster = caster;
+//		_actionReceiver = receiver;
+
+		if (_actionCaster != null && _actionReceiver != null) 
+		{
+			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain> ();
+			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain> ();
+			
+			Debug.Log ("Set Caster and Receiver");
+		}
+		else
+		{
+			Debug.LogWarning ("No Caster and Receiver Set!");
+		}
 	}
 	
 	#endregion

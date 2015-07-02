@@ -16,7 +16,7 @@ public class Ancestor : MonoBehaviour {
 
 	public AncestorClasses	_playerAncestor;
 
-	public GameObject 	_ancestorGo;				// handle gfx etc.
+//	public GameObject 	_ancestorGo;				// TODO: handle gfx etc. use later
 	public int 			_attackPoints;
 	public int			_armorAddition;
 	public int			_healthAddition;
@@ -29,9 +29,14 @@ public class Ancestor : MonoBehaviour {
 	public ActionType	_action1;
 	public ActionType	_action2;
 	public ActionType	_action3;
+	
+	public Sprite	_ancestorIcon;
 
 	public ActionType	_actionToPassCombat;
 	private ActionType	m_queuedAction;
+
+	private CombatController m_currentCombatController;
+	private HeroController m_currentHeroController;
 
 	// TODO: List for actionTypes
 
@@ -45,28 +50,22 @@ public class Ancestor : MonoBehaviour {
 
 	public void Start()
 	{
-		m_uiController = GameContext.currentInstance.uiController;
+//		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+		Debug.Log (m_uiController);
+
 		SetQueuedAction(_autoAction);
 		m_hasAction = false;
-	}
 
-	public void UpdateAncestorStats()
-	{
-		// feeds in any values that are relevant to a stat change that then the player can execute
+		RegisterWithControllers ();
 	}
-
-	public bool CriticalHit()
-	{
-		// find out if critical hit chance is given ?? TODO: Critical hit leave to later
-		return false;
-	}
-
-	//Interval System
 	
 	void Update () 
 	{
 		RunInterval();
 	}
+
+#region Action Type Manager
+
 	public void SetAction(ActionType pendingAction)
 	{
 		//TODO: When we have energy add check here
@@ -86,7 +85,6 @@ public class Ancestor : MonoBehaviour {
 				SetQueuedAction(pendingAction);
 			}
 		}
-
 	}
 
 	public void SetQueuedAction(ActionType action)
@@ -97,17 +95,30 @@ public class Ancestor : MonoBehaviour {
 	public void ActivateAction(ActionType action)
 	{
 		Debug.Log("POW! Attack");
+
 		//Activate the player action
-		_actionToPassCombat = action;
+		_actionToPassCombat = action;	// TODO: just pass action straight on to combatcontroller
+
+		m_currentCombatController.AddActionToQueue (_actionToPassCombat);
 	}
-	
-	private void ResetInterval()
+
+#endregion
+
+#region Interval Methods
+
+	private void RunInterval()
 	{
-		m_hasAction = false;
-		m_currentInterval = 0f;
-		SetQueuedAction(_autoAction);
+		//Debug.Log ("RunInterval()");
+		m_currentInterval += Time.deltaTime;
+		
+//		m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
+		
+		if (m_currentInterval >= _combatInterval)
+		{
+			CompleteInterval();
+		}
 	}
-	
+
 	private void CompleteInterval()
 	{
 		if(_actionToPassCombat==null)
@@ -117,19 +128,45 @@ public class Ancestor : MonoBehaviour {
 		}
 		ResetInterval();
 	}
-	
-	private void RunInterval()
+
+	private void ResetInterval()
 	{
-		//Debug.Log ("RunInterval()");
-		m_currentInterval += Time.deltaTime;
-		
-		m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
-		
-		if (m_currentInterval >= _combatInterval)
+		m_hasAction = false;
+		m_currentInterval = 0f;
+		SetQueuedAction(_autoAction);
+		_actionToPassCombat = null;
+	}
+
+#endregion
+
+#region Placeholder methods and expansions
+
+	public void RegisterWithControllers()
+	{
+		m_currentCombatController = FindObjectOfType<CombatController>();
+		m_currentHeroController = FindObjectOfType<HeroController> ();
+
+		if (m_currentCombatController == null || m_currentHeroController == null) {
+			Debug.LogWarning ("No Hero and/or CombatController found!");
+		}
+		else
 		{
-			CompleteInterval();
+			m_currentCombatController._ancestorList.Add ( this );
+			m_currentHeroController._ancestorList.Add ( this );
 		}
 	}
 
+	public void UpdateAncestorStats()
+	{
+		// feeds in any values that are relevant to a stat change that then the player can execute
+	}
+	
+	public bool CriticalHit()
+	{
+		// find out if critical hit chance is given ?? TODO: Critical hit leave to later
+		return false;
+	}
+
+#endregion
 }
 
