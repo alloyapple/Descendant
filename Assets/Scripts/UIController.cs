@@ -29,17 +29,18 @@ public class UIController : MonoBehaviour
 		_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
-		
-		_playerIcon.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
-		_button1.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
-		_button2.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
-		_button3.transform.GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action3._actionIcon;
+
+		_playerIcon.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
+		_button1.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
+		_button2.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
+		_button3.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action3._actionIcon;
 
 	}
 	
 	public void ExitGame()
 	{
 		Application.LoadLevel("Menu");
+		Destroy(FindObjectOfType<AncestorSelection>());
 	}
 	
 	public void ActivateAction(int actionNum)
@@ -47,6 +48,9 @@ public class UIController : MonoBehaviour
 		switch (actionNum) {
 			case 1:
 			{
+			Debug.Log("SET THIS ACTION: "+actionNum);
+			Debug.Log(_ancestor);
+				Debug.Log(_ancestor._action1);
 				_ancestor.SetAction(_ancestor._action1);
 				break;
 			}
