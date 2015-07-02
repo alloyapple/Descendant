@@ -78,6 +78,7 @@ public class ActionType : MonoBehaviour
 				if (m_actionReceiverEntity != null)
 				{
 					m_actionReceiverEntity.ApplyDamage(_damageAmount);
+					Debug.Log ("Damage Dealt to: " + _actionReceiver.name); 
 				}
 				break;
 			}
@@ -86,6 +87,7 @@ public class ActionType : MonoBehaviour
 				if (m_actionCasterEntity != null)
 				{
 					m_actionCasterEntity.AddHealth(_healAmount);
+					Debug.Log ("Health added to: " + _actionCaster.name); 
 				}
 				break;
 			}
@@ -94,6 +96,7 @@ public class ActionType : MonoBehaviour
 				if (m_actionCasterEntity != null)
 				{
 					m_actionCasterEntity.AddArmor(_armorAdd);
+					Debug.Log ("Armor added to: " + _actionCaster.name); 
 				}
 				break;
 			}
@@ -133,10 +136,20 @@ public class ActionType : MonoBehaviour
 	{
 		// TODO: Have list for multiple receivers
 
-		_actionCaster = caster;
-		_actionReceiver = receiver;
+		if (_actionCaster != caster) 
+		{
+			_actionCaster = caster;
+		}
+		if (_actionReceiver != receiver) 
+		{
+			_actionReceiver = receiver;
+		}
 
-		if (_actionCaster != null && _actionReceiver != null) {
+//		_actionCaster = caster;
+//		_actionReceiver = receiver;
+
+		if (_actionCaster != null && _actionReceiver != null) 
+		{
 			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain> ();
 			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain> ();
 			

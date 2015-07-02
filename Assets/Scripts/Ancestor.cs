@@ -16,7 +16,7 @@ public class Ancestor : MonoBehaviour {
 
 	public AncestorClasses	_playerAncestor;
 
-	public GameObject 	_ancestorGo;				// handle gfx etc.
+//	public GameObject 	_ancestorGo;				// TODO: handle gfx etc. use later
 	public int 			_attackPoints;
 	public int			_armorAddition;
 	public int			_healthAddition;
@@ -48,7 +48,7 @@ public class Ancestor : MonoBehaviour {
 
 	public void Start()
 	{
-		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+//		m_uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
 		Debug.Log (m_uiController);
 
 		SetQueuedAction(_autoAction);
@@ -95,9 +95,9 @@ public class Ancestor : MonoBehaviour {
 		Debug.Log("POW! Attack");
 
 		//Activate the player action
-		_actionToPassCombat = action;
+		_actionToPassCombat = action;	// TODO: just pass action straight on to combatcontroller
+
 		m_currentCombatController.AddActionToQueue (_actionToPassCombat);
-		// TODO: Pass to Combatcontroller
 	}
 
 #endregion
@@ -109,7 +109,7 @@ public class Ancestor : MonoBehaviour {
 		//Debug.Log ("RunInterval()");
 		m_currentInterval += Time.deltaTime;
 		
-		m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
+//		m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
 		
 		if (m_currentInterval >= _combatInterval)
 		{

@@ -24,23 +24,12 @@ public class HeroController : MonoBehaviour {
 
 	void Start()
 	{
-//		_enemyController = GameContext.currentInstance.enemyController;
 		CompileStatsFromAncestors ();
 	}
 
 	void Awake()
 	{
-//		GameContext.currentInstance.descendantController = this;
-	}
 
-	public void TakeDamage(int damage)
-	{
-//		_health = _health - damage;
-	}
-
-	public void AutoAttack ()
-	{
-//		_enemyController.TakeDamage(5);
 	}
 
 	public void CompileStatsFromAncestors()

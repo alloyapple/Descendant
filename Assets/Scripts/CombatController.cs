@@ -13,9 +13,10 @@ public class CombatController : MonoBehaviour {
 	public List<EntityWrapper> 	_actionList;
 //	public Queue<EntityWrapper>	_actionQueue;
 	public Queue<ActionType>	_actionQueue;
+	public Queue<EntityMain>	_enemyQueue;	// TODO: add dequeue method when enemy dies
 	
 	public GameObject			_TestplayerGo;
-	public GameObject			_TestenemyGo;
+	public GameObject			_TestenemyGo;	// TODO: Find Enemy, or spawn enemy and add to combatController
 	public GameObject			_TestActionGo;
 
 	public HeroController		_HeroMain;		// TODO: take Hero Controller attackRate as queue workdown
@@ -28,17 +29,17 @@ public class CombatController : MonoBehaviour {
 	private EntityMain 			m_currentTestEnemyEntity;
 	private ActionType			m_currentTestAction;
 	
-	UIController m_uiController;
+//	UIController m_uiController;
 
 	// Use this for initialization
 	void Start () 
 	{
 		ResetInterval(); //Set up initial interval information
 
-		m_uiController = GameContext.currentInstance.uiController;
+//		m_uiController = GameContext.currentInstance.uiController;
 //		_actionQueue = new Queue<EntityWrapper> ();
 		_actionQueue = new Queue<ActionType> ();
-		
+		_enemyQueue = new Queue<EntityMain> ();
 
 		_HeroMain = FindObjectOfType<HeroController> ();
 
@@ -76,14 +77,14 @@ public class CombatController : MonoBehaviour {
 		// TEST END ////////////////////////////////////////////////////
 	}
 
-	void Awake (){
-		GameContext.currentInstance.combatController = this;
+	void Awake ()
+	{
+//		GameContext.currentInstance.combatController = this;
 	}
 	
-	void Update () {
+	void Update () 
+	{
 		RunInterval();
-		CollectInput();
-
 	}
 
 	private void ResetInterval()
@@ -112,8 +113,8 @@ public class CombatController : MonoBehaviour {
 	{
 		m_currentInterval += Time.deltaTime;
 
-		if(m_uiController != null)
-			m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
+//		if(m_uiController != null)
+//			m_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
 
 		if (m_currentInterval >= _combatInterval)
 		{
@@ -125,10 +126,6 @@ public class CombatController : MonoBehaviour {
 	private void CollectInput()
 	{
 		// TODO: expand to mouse input
-		if (Input.GetKeyUp (KeyCode.Space)) 
-		{
-			ApplyQueuedAction();
-		}
 	}
 
 	private void ApplyQueuedAction()
@@ -141,6 +138,8 @@ public class CombatController : MonoBehaviour {
 		if (_actionQueue.Count > 0) 
 		{
 			ActionType currentAction = _actionQueue.Dequeue();
+
+			currentAction.SetCasterReceiver( _HeroMain.gameObject, _TestenemyGo );
 			currentAction.ProcessAction( currentAction._type );
 		} 
 		else 
