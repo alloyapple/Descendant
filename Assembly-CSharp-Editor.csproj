@@ -46,7 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\DDSSortingLayerEditor.cs" />
      <Compile Include="Assets\Editor\TransformInspector.cs" />
+     <None Include="Assets\Shader\Descendant_Player_Matcap.shader" />
+     <None Include="Assets\Shader\Particle AlphaBlended WhiteTexture.shader" />
+     <None Include="Assets\Shader\Particle AlphaBlended Scroll Dist WhiteTexture.shader" />
+     <None Include="Assets\Shader\Particle Multiply WhiteTexture (Alpha).shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 465/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.5/UnityEngine.UI.dll</HintPath>
  </Reference>
