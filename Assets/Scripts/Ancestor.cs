@@ -29,6 +29,8 @@ public class Ancestor : MonoBehaviour {
 	public ActionType	_action1;
 	public ActionType	_action2;
 	public ActionType	_action3;
+	
+	public Sprite	_ancestorIcon;
 
 	public ActionType	_actionToPassCombat;
 	private ActionType	m_queuedAction;
