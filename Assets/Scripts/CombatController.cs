@@ -140,9 +140,10 @@ public class CombatController : MonoBehaviour {
 			if (_actionQueue.Count > 0) {
 				ActionType currentAction = _actionQueue.Dequeue ();
 
-				_HeroMain.ActivateAnimation (currentAction._actionAnimation);
 				currentAction.SetCasterReceiver (_HeroMain.gameObject, _TestenemyGo);	// TODO: find better/more flexible way to integrate _TestenemeyGo functionality
 				currentAction.ProcessAction (currentAction._type);
+				_HeroMain.ActivateAnimation (currentAction._actionAnimation);
+				
 			} 
 //		else 
 //		{

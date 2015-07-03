@@ -64,11 +64,12 @@ public class EnemyManager : MonoBehaviour {
 		{
 			// All Enemies Spawned aka. killed em all aka. you win
 			// TODO: Loose sate ?????
-			m_director.Victory();
 			Debug.LogWarning("VICTORY");
+			
+			m_director.Victory();
 		}
 
-		if (m_currentEnemySpawnQueue.Count > 0) {
+		if (m_currentEnemySpawnQueue.Count > 0 ) {
 			Debug.Log ("Spawning new Enemy");
 
 			GameObject object2Spawn = m_currentEnemySpawnQueue.Dequeue ();
@@ -87,29 +88,40 @@ public class EnemyManager : MonoBehaviour {
 			{
 				Debug.LogWarning("There is no EnemyController Assigned to this enemy: " + object2Spawn.name);		// TODO: do this check on start
 			}
-
 		} 
 		else 
 		{
 			m_currentSpawnInterval++;
+
+			if ( m_currentSpawnInterval > _spawnIntervals )
+			{
+				// All Enemies Spawned aka. killed em all aka. you win
+				// TODO: Loose sate ?????
+				Debug.LogWarning("VICTORY");
+				
+				m_director.Victory();
+			}
+				else
+			{
 			if (_enemyList.Count == 0) 
 			{
 				Debug.LogWarning ("No Enemies in EnemySpawner List, please populate and maybe create a prefab");
 			}
-			else
-			{
-				m_currentEnemySpawnQueue = new Queue<GameObject>();
-				
-				for ( int i = 0; i < _enemyList.Count; i++ )
+				else
 				{
-					// Fill Enemy Queue for the first time
-					m_currentEnemySpawnQueue.Enqueue( _enemyList[i] );
+					m_currentEnemySpawnQueue = new Queue<GameObject>();
+					
+					for ( int i = 0; i < _enemyList.Count; i++ )
+					{
+						// Fill Enemy Queue for the first time
+						m_currentEnemySpawnQueue.Enqueue( _enemyList[i] );
+					}
+					
+					if ( _enemyList.Count == 0 )
+						Debug.LogWarning("Enemey Manger Enemy List is empty, please populate");
 				}
-				
-				if ( _enemyList.Count == 0 )
-					Debug.LogWarning("Enemey Manger Enemy List is empty, please populate");
+				Debug.LogWarning ("Next Enemy Spawn Interval");
 			}
-			Debug.Log ("Next Enemy Spawn Interval");
 		}
 	}
 }
