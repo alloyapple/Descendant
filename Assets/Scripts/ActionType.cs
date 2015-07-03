@@ -182,17 +182,17 @@ public class ActionType : MonoBehaviour
 	{
 		// TODO: Have list for multiple receivers
 
-		if (_actionCaster != caster) 
-		{
-			_actionCaster = caster;
-		}
-		if (_actionReceiver != receiver) 
-		{
-			_actionReceiver = receiver;
-		}
+//		if (_actionCaster != caster) 
+//		{
+//			_actionCaster = caster;
+//		}
+//		if (_actionReceiver != receiver) 
+//		{
+//			_actionReceiver = receiver;
+//		}
 
-//		_actionCaster = caster;
-//		_actionReceiver = receiver;
+		_actionCaster = caster;
+		_actionReceiver = receiver;
 
 		if (_actionCaster != null && _actionReceiver != null) 
 		{

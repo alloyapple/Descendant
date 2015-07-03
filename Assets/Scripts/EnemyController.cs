@@ -67,14 +67,14 @@ public class EnemyController : MonoBehaviour {
 		m_hasAction = false;
 		m_currentInterval = 0f;
 		SetQueuedAction(_autoAction);
-		_actionToPassCombat = null;
+//		_actionToPassCombat = null;
 	}
 	
 	#endregion
 
 	public void ActivateAction(ActionType action)
 	{
-		Debug.Log("Enemy Action!!");
+		Debug.LogWarning("Enemy Action!! " + action + " Gameobject " + _instanceRef);
 		
 		//Activate the player action
 		_actionToPassCombat = action;	// TODO: just pass action straight on to combatcontroller
