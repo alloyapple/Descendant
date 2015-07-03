@@ -18,7 +18,8 @@ public class EntityMain : MonoBehaviour {
 	
 	void Update ()
 	{
-
+		if (Death ())
+			Destroy (this.gameObject);
 	}
 
 	public void ApplyDamage(int amount)
@@ -46,9 +47,12 @@ public class EntityMain : MonoBehaviour {
 	}
 	public void DetractArmor(int amount)
 	{
-		if (_armor >= 0) {
+		if (_armor > 0) 
+		{
 			_armor -= amount;
 		}
+		if (_armor < 0)
+			_armor = 0;
 	}
 
 	public bool Death()

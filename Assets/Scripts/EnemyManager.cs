@@ -65,6 +65,7 @@ public class EnemyManager : MonoBehaviour {
 			// All Enemies Spawned aka. killed em all aka. you win
 			// TODO: Loose sate ?????
 			m_director.Victory();
+			Debug.LogWarning("VICTORY");
 		}
 
 		if (m_currentEnemySpawnQueue.Count > 0) {

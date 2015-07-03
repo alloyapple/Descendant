@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour {
 
 	public EnemyManager _enemyManger; // TODO: !!!!!!!! use this to execute death mode, also known 
 
+	private EntityMain _EntityController;
+
 	private float 		m_currentInterval; //how far into the current interval are we?
 	private bool 		m_hasAction; //has the entity activated an action?
 
@@ -30,11 +32,20 @@ public class EnemyController : MonoBehaviour {
 	{
 		_target = FindObjectOfType<HeroController> ().gameObject;
 		_actionToPassCombat = _autoAction;
+		_EntityController = this.gameObject.GetComponent<EntityMain> ();
 	}
 
 	
 	void Update () 
 	{
+		if ( _EntityController.Death() ) 
+		{
+			Debug.LogWarning("Enemy killed!!!!");
+			Destroy (this.gameObject);
+			_enemyManger.SpawnNewEnemy();
+			
+		}
+
 		RunInterval();
 	}
 
@@ -74,7 +85,7 @@ public class EnemyController : MonoBehaviour {
 
 	public void ActivateAction(ActionType action)
 	{
-		Debug.LogWarning("Enemy Action!! " + action + " Gameobject " + _instanceRef);
+//		Debug.LogWarning("Enemy Action!! " + action + " Gameobject " + _instanceRef);
 		
 		//Activate the player action
 		_actionToPassCombat = action;	// TODO: just pass action straight on to combatcontroller
