@@ -80,21 +80,26 @@ public class Ancestor : MonoBehaviour {
 	public void SetAction(ActionType pendingAction)
 	{
 		Debug.Log("SET THIS ACTION: "+pendingAction);
-		//TODO: When we have energy add check here
+
 		if (!m_hasAction)
 		{
-			//No action has yet been set
-			m_hasAction = true;
+			if(pendingAction._energyCost < _uiController._currentEnergy)
+			{
+				_uiController.ReduceEnergy(pendingAction._energyCost);
 
-			if(pendingAction._instantApply)
-			{
-				//We have an instant action
-				ActivateAction(pendingAction);
-			}
-			else
-			{
-				//We have a queued action
-				SetQueuedAction(pendingAction);
+				//No action has yet been set
+				m_hasAction = true;
+				
+				if(pendingAction._instantApply)
+				{
+					//We have an instant action
+					ActivateAction(pendingAction);
+				}
+				else
+				{
+					//We have a queued action
+					SetQueuedAction(pendingAction);
+				}
 			}
 		}
 	}

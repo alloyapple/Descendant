@@ -25,6 +25,8 @@ public class UIController : MonoBehaviour
 	HeroController _hero;
 	EnemyController _enemy;
 	EnemyManager _enemyManager;
+
+	public float _currentEnergy;
 	
 	void Start()
 	{
@@ -122,7 +124,6 @@ public class UIController : MonoBehaviour
 	
 	public void UpdateEnemyHealth(float health)
 	{
-		Debug.Log ("Update Enemy Health "+health);
 		_enemyHealth.value = health;
 	}
 	
@@ -130,5 +131,24 @@ public class UIController : MonoBehaviour
 	{
 		_heroHealth.value = health;
 	}
-	
+
+	public void UpdateEnergy(float current, float max)
+	{
+		_currentEnergy = current;
+		_heroEnergy.value = current/max;
+	}
+
+	public void ReduceEnergy(float energyMod)
+	{
+		float tempEnergy = _hero._currentEnergy - energyMod;
+		if(tempEnergy < 0)
+		{
+			_hero._currentEnergy = 0;
+		}
+		else
+		{
+			_hero._currentEnergy = tempEnergy;
+		}
+	}
+
 }

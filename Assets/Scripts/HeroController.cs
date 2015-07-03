@@ -17,6 +17,10 @@ public class HeroController : MonoBehaviour {
 	public List<GameObject> _animList;		
 
 	public EntityMain		_localEntityMain;
+	
+	public float	_currentEnergy;
+	public float	_maxEnergy;
+	public float	_fillEnergy;
 
 	private int	m_maxHealth;
 	private int m_maxArmor;
@@ -35,6 +39,15 @@ public class HeroController : MonoBehaviour {
 		ResetAnimation();
 		m_director = FindObjectOfType<Director>();
 		CompileStatsFromAncestors();
+
+
+		if(_maxEnergy==0)
+			_maxEnergy = 100f;
+		
+		if(_fillEnergy==0)
+			_fillEnergy = 0.1f;//0.001f;
+
+		_currentEnergy = _maxEnergy;
 	}
 
 	void Awake()
@@ -87,9 +100,21 @@ public class HeroController : MonoBehaviour {
 				
 			}
 		}
+
+		if(_currentEnergy < _maxEnergy)
+		{
+			_currentEnergy += _fillEnergy;
+			if(_currentEnergy >= _maxEnergy)
+			{
+				_currentEnergy = _maxEnergy;
+			}
+		}
+
 		if (m_uiController != null)
 		{
 			m_uiController.UpdateHeroHealth((float)_localEntityMain._health / _localEntityMain._healthMax);
+
+			m_uiController.UpdateEnergy(_currentEnergy,_maxEnergy);
 		}
 	}
 
