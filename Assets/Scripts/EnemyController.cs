@@ -51,11 +51,12 @@ public class EnemyController : MonoBehaviour {
 
 			if (m_aniController!=null)
 			{
-				m_aniController.StartCoroutine("DeathState", 0.25f );
+				m_aniController.StartCoroutine("DeathState", 1.5f );
 			}
 
-			Destroy (this.gameObject);
-			_enemyManger.StartCoroutine("WaitBeforeSpawn");
+			_enemyManger.StartCoroutine("WaitBeforeSpawn", this.gameObject);
+//			Destroy (this.gameObject);
+			
 		}
 
 		RunInterval();

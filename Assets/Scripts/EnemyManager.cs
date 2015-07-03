@@ -63,9 +63,10 @@ public class EnemyManager : MonoBehaviour {
 		m_uiController = ui;
 	}
 
-	public IEnumerator WaitBeforeSpawn()
+	public IEnumerator WaitBeforeSpawn(GameObject destroyme)
 	{
 		yield return new WaitForSeconds(2f);
+		Destroy (destroyme);
 		SpawnNewEnemy ();
 		
 	}
@@ -74,7 +75,7 @@ public class EnemyManager : MonoBehaviour {
 	{
 //		if (m_currentEnemy == null || m_currentEnemySpawnQueue.Count > 0) 
 
-		WaitBeforeSpawn ();
+//		WaitBeforeSpawn (null);
 
 		if ( m_currentSpawnInterval > _spawnIntervals )
 		{
