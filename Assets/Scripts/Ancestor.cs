@@ -36,6 +36,7 @@ public class Ancestor : MonoBehaviour {
 	public bool			_isPlayer;
 	
 	public Sprite	_ancestorIcon;
+	public Sprite	_ancestorBg;
 
 	public ActionType	_actionToPassCombat;
 	private ActionType	m_queuedAction;
