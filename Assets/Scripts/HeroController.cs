@@ -12,7 +12,9 @@ public class HeroController : MonoBehaviour {
 	public float 	_attackRate;					// TODO: Inherit from Ancestor
 
 	public List<Ancestor>	_ancestorList;			// TODO: Possible wrap layer for ancestor class to manage multiple players
-	public List<EntityMain> _enemyList;				
+	public List<EntityMain> _enemyList;		
+	
+	public List<GameObject> _animList;		
 
 	public EntityMain		_localEntityMain;
 
@@ -20,16 +22,51 @@ public class HeroController : MonoBehaviour {
 	private int m_maxArmor;
 	private int m_maxDamage;
 
+	private float m_animTiming;		
+	public float m_fullAnimTiming;
+
 //	EnemyController _enemyController;
 
 	void Start()
 	{
-		CompileStatsFromAncestors ();
+		//m_fullAnimTiming = 0.2f;
+		m_animTiming = 0f;
+		ResetAnimation();
 	}
 
 	void Awake()
 	{
 
+	}
+
+	public void ActivateAnimation(int animNum)
+	{
+		Debug.Log (_animList[animNum]);
+		_animList[0].SetActive(false);
+		_animList[animNum].SetActive(true);
+		m_animTiming = 0.01f;
+	}
+
+	public void ResetAnimation()
+	{
+		_animList[0].SetActive(true);
+		for (int i = 1; i < _animList.Count; i++) 
+		{
+			_animList[i].SetActive (false);
+		}
+		m_animTiming = 0f;
+	}
+
+	void Update()
+	{
+		if(m_animTiming > 0f)
+		{
+			m_animTiming += Time.deltaTime;
+
+			if(m_animTiming > m_fullAnimTiming){
+				ResetAnimation();
+			}
+		}
 	}
 
 	public void CompileStatsFromAncestors()

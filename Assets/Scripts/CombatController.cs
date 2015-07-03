@@ -119,8 +119,8 @@ public class CombatController : MonoBehaviour {
 
 		if (m_currentInterval >= _combatIntervalHero)
 		{
-			CompleteInterval();
 			ApplyQueuedAction();
+			CompleteInterval();
 		}
 	}
 
@@ -140,6 +140,7 @@ public class CombatController : MonoBehaviour {
 		{
 			ActionType currentAction = _actionQueue.Dequeue();
 
+			_HeroMain.ActivateAnimation (currentAction._actionAnimation);
 			currentAction.SetCasterReceiver( _HeroMain.gameObject, _TestenemyGo );	// TODO: find better/more flexible way to integrate _TestenemeyGo functionality
 			currentAction.ProcessAction( currentAction._type );
 		} 
