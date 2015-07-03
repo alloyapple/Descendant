@@ -25,13 +25,15 @@ public class HeroController : MonoBehaviour {
 	private float m_animTiming;		
 	public float m_fullAnimTiming;
 
-//	EnemyController _enemyController;
+	private Director m_director;
 
 	void Start()
 	{
 		//m_fullAnimTiming = 0.2f;
 		m_animTiming = 0f;
 		ResetAnimation();
+		m_director = FindObjectOfType<Director>();
+		CompileStatsFromAncestors();
 	}
 
 	void Awake()
@@ -66,6 +68,14 @@ public class HeroController : MonoBehaviour {
 			if(m_animTiming > m_fullAnimTiming){
 				ResetAnimation();
 			}
+		}
+		Debug.Log(_localEntityMain);
+		if(_localEntityMain!=null && _localEntityMain.Death() ) 
+		{
+			Debug.LogWarning("Hero killed!!!!");
+			Destroy (_localEntityMain.gameObject);
+			m_director.Loss();
+			
 		}
 	}
 

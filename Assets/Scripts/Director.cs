@@ -20,7 +20,6 @@ public class Director : MonoBehaviour
 	void Start()
 	{
 		_uiController = FindObjectOfType<UIController>();
-
 		m_playerClassNum = GameObject.FindObjectOfType<AncestorSelection>().selectedAncestor;
 
 		if(m_playerClassNum==0){
@@ -67,10 +66,10 @@ public class Director : MonoBehaviour
 	void AddOtherAncestors()
 	{
 		
-		Instantiate(_priest);
-		Instantiate(_mage);
-		Instantiate(_rogue);
-		Instantiate(_warrior);
+		//Instantiate(_priest);
+		//Instantiate(_mage);
+		//Instantiate(_rogue);
+		//Instantiate(_warrior);
 	}
 
 	void Awake()
@@ -81,13 +80,15 @@ public class Director : MonoBehaviour
 	public void Victory()
 	{
 		Debug.Log ("Victory! - End game screen to be called");
-		_uiController.Victory();
+		Application.LoadLevel("Won_Popup");
+		//_uiController.Victory();
 	}
 
 	public void Loss()
 	{
 		Debug.Log ("Game Over! - End game screen to be called");
-		_uiController.Loss();
+		Application.LoadLevel("Lost_Popup");
+		//_uiController.Loss();
 	}
 
 }

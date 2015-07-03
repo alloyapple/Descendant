@@ -34,8 +34,9 @@ public class UIController : MonoBehaviour
 			}
 		}
 		_ancestor.PassUI(this);
-
+		
 		VictoryScreen.SetActive (false);
+		LossScreen.SetActive (false);
 		
 		_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
