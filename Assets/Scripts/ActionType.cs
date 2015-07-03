@@ -51,22 +51,7 @@ public class ActionType : MonoBehaviour
 	private GameObject _initialHolder;
 	private GameObject _impactHolder;
 
-//	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
-//	{
-
-//
-//		_actionCaster = CasterGo;
-//		_actionReceiver = ReceiverGo;
-//
-//		if (_actionCaster != null && _actionReceiver != null) 
-//		{
-//			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain>();
-//			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain>();
-//
-//			Debug.Log("Set Caster and Receiver");
-//			
-//		}
-//	}
+	private AniStateController currentController;
 
 	void Start()
 	{
@@ -81,13 +66,23 @@ public class ActionType : MonoBehaviour
 	{
 		ProcessEffects ();
 
+		if (m_actionReceiverEntity != null) 
+		{
+			currentController = m_actionReceiverEntity.gameObject.GetComponent<AniStateController> ();
+		}
+
 		switch (currentAction) {
 		case ActionTypeName.DealDamage:
 			{
 				if (m_actionReceiverEntity != null)
 				{
 					m_actionReceiverEntity.ApplyDamage(_damageAmount);
-					Debug.Log ("Damage Dealt to: " + _actionReceiver.name); 
+					Debug.Log ("Damage Dealt to: " + _actionReceiver.name);
+
+					if ( currentController != null )
+					{
+						currentController.StartCoroutine("TakeHit", 0.25f );
+					}
 				}
 				break;
 			}
@@ -115,6 +110,11 @@ public class ActionType : MonoBehaviour
 				if (m_actionReceiverEntity != null)
 				{
 					m_actionReceiverEntity.DetractArmor(_armorDetract);
+
+					if ( currentController != null )
+					{
+						currentController.StartCoroutine("TakeHit", 0.25f );
+					}
 				}
 				break;
 			}

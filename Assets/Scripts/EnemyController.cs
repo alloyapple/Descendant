@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour {
 	private ActionType	m_queuedAction;
 
 	private UIController m_uiController;
+	private AniStateController m_aniController;
 
 	#region Interval Methods
 
@@ -35,6 +36,10 @@ public class EnemyController : MonoBehaviour {
 		_target = FindObjectOfType<HeroController> ().gameObject;
 		_actionToPassCombat = _autoAction;
 		_EntityController = this.gameObject.GetComponent<EntityMain> ();
+		m_aniController = gameObject.GetComponent<AniStateController> ();
+
+		if (m_aniController == null)
+			Debug.LogWarning ("No Animation Controller on Enemy!");
 	}
 
 	
@@ -43,9 +48,14 @@ public class EnemyController : MonoBehaviour {
 		if ( _EntityController.Death() ) 
 		{
 			Debug.LogWarning("Enemy killed!!!!");
+
+			if (m_aniController!=null)
+			{
+				m_aniController.StartCoroutine("DeathState", 0.25f );
+			}
+
 			Destroy (this.gameObject);
 			_enemyManger.SpawnNewEnemy();
-			
 		}
 
 		RunInterval();
