@@ -14,6 +14,8 @@ public class ClassSelect : MonoBehaviour
 	public GameObject _buttonMage;
 	public GameObject _buttonRogue;
 
+	public GameObject _buttonFight;
+
 	public AncestorSelection _ancestorSelection;
 
 	private int _currentClass;
@@ -23,6 +25,7 @@ public class ClassSelect : MonoBehaviour
 		ClearAllVisuals();
 		_currentClass = 0;
 		_ancestorSelection.selectedAncestor = 0;
+		_buttonFight.SetActive(false);
 	}
 
 	public void LoadScene(string sceneName)
@@ -47,6 +50,7 @@ public class ClassSelect : MonoBehaviour
 
 	public void SetHero(int ancestorNum)
 	{
+		_buttonFight.SetActive(true);
 		_currentClass = ancestorNum;
 	}
 

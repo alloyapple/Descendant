@@ -49,7 +49,7 @@ public class UIController : MonoBehaviour
 		VictoryScreen.SetActive (false);
 		LossScreen.SetActive (false);
 		
-		_intervalIndicator.value = 0;
+		//_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
 		
@@ -72,7 +72,7 @@ public class UIController : MonoBehaviour
 		Application.LoadLevel("Menu");
 		Destroy(FindObjectOfType<AncestorSelection>());
 	}
-	
+
 	public void ActivateAction(int actionNum)
 	{
 		switch (actionNum) {
@@ -109,7 +109,8 @@ public class UIController : MonoBehaviour
 	
 	public void UpdateIntervalIndicator(float m_progress)
 	{
-		_intervalIndicator.value = m_progress;
+		_playerIcon.transform.FindChild("Background").FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = m_progress;
+		//_intervalIndicator.value = m_progress;
 	}
 	
 	public void SetIntervalIndicatorState(bool active)
@@ -151,4 +152,29 @@ public class UIController : MonoBehaviour
 		}
 	}
 
+	public void SetActionVisual(float val)
+	{
+		_button1.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = val;
+		_button2.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = val;
+		_button3.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = val;
+	}
+	
+	public void SetActionVisualEnergy(float energy1, float energy2, float energy3)
+	{
+		if(energy1>=_currentEnergy)
+			_button1.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = 1f;
+		else
+			_button1.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = 0f;
+		
+		if(energy2>=_currentEnergy)
+			_button2.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = 1f;
+		else
+			_button2.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = 0f;
+		
+		if(energy3>=_currentEnergy)
+			_button3.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = 1f;
+		else
+			_button3.transform.FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = 0f;
+
+	}
 }

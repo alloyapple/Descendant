@@ -72,7 +72,11 @@ public class Ancestor : MonoBehaviour {
 	
 	void Update () 
 	{
-		RunInterval();
+		if(_uiController!=null)
+		{
+			RunInterval();
+			CheckEnergyLock();
+		}
 	}
 
 #region Action Type Manager
@@ -85,6 +89,7 @@ public class Ancestor : MonoBehaviour {
 		{
 			if(pendingAction._energyCost < _uiController._currentEnergy)
 			{
+				LockActions();
 				_uiController.ReduceEnergy(pendingAction._energyCost);
 
 				//No action has yet been set
@@ -125,15 +130,12 @@ public class Ancestor : MonoBehaviour {
 
 	private void RunInterval()
 	{
-		if(_uiController!=null)
+		m_currentInterval += Time.deltaTime;
+		_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
+		
+		if (m_currentInterval >= _combatInterval)
 		{
-			m_currentInterval += Time.deltaTime;
-			_uiController.UpdateIntervalIndicator(m_currentInterval/_combatInterval);
-			
-			if (m_currentInterval >= _combatInterval)
-			{
-				CompleteInterval();
-			}
+			CompleteInterval();
 		}
 	}
 
@@ -153,6 +155,24 @@ public class Ancestor : MonoBehaviour {
 		m_currentInterval = 0f;
 		SetQueuedAction(_autoAction);
 		_actionToPassCombat = null;
+		UnlockActions();
+	}
+
+	private void LockActions()
+	{
+		_uiController.SetActionVisual(1f);
+	}
+
+	private void CheckEnergyLock()
+	{
+		if(!m_hasAction){
+			_uiController.SetActionVisualEnergy(_action1._energyCost,_action2._energyCost,_action3._energyCost);
+		}
+	}
+
+	private void UnlockActions()
+	{
+		_uiController.SetActionVisual(0f);
 	}
 
 #endregion
