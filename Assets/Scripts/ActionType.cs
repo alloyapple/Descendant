@@ -29,8 +29,9 @@ public class ActionType : MonoBehaviour
 	public int		_armorDetractOT;
 
 	public int		_actionPoints;				// TODO: Counter Calculate Cost of action
-
+	
 	public Sprite	_actionIcon;
+	public int		_actionAnimation;
 
 	public int		_energyCost;
 
