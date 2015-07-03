@@ -131,19 +131,19 @@ public class ActionType : MonoBehaviour
 
 		if(_initialEffectOnCaster)
 		{
-			m_initialPosition = m_actionCasterEntity.transform.position;
+			m_initialPosition = new Vector3(-0.5f,-3f,16.6f);
 		}
 		else
 		{
-			m_initialPosition = m_actionReceiverEntity.transform.position;
+			m_initialPosition = new Vector3(1.18f,0.91f,16.6f);
 		}
 		if(_impactEffectOnCaster)
 		{
-			m_impactPosition = m_actionCasterEntity.transform.position;
+			m_impactPosition = new Vector3(-0.5f,-3f,16.6f);
 		}
 		else
 		{
-			m_impactPosition = m_actionReceiverEntity.transform.position;
+			m_impactPosition = new Vector3(1.18f,0.91f,16.6f);
 		}
 
 		if(_initialEffect != null)
