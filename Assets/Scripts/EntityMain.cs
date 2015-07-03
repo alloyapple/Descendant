@@ -18,8 +18,7 @@ public class EntityMain : MonoBehaviour {
 	
 	void Update ()
 	{
-		if (Death ())
-			Destroy (this.gameObject);
+
 	}
 
 	public void ApplyDamage(int amount)

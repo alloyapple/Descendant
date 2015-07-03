@@ -136,34 +136,35 @@ public class CombatController : MonoBehaviour {
 //			EntityWrapper currentItem = _actionList[i];
 //			currentItem._actionType.ProcessAction(currentItem._actionType._type);
 //		}
-		if (_actionQueue.Count > 0) 
-		{
-			ActionType currentAction = _actionQueue.Dequeue();
+		if (_TestenemyGo != null) {
+			if (_actionQueue.Count > 0) {
+				ActionType currentAction = _actionQueue.Dequeue ();
 
-			_HeroMain.ActivateAnimation (currentAction._actionAnimation);
-			currentAction.SetCasterReceiver( _HeroMain.gameObject, _TestenemyGo );	// TODO: find better/more flexible way to integrate _TestenemeyGo functionality
-			currentAction.ProcessAction( currentAction._type );
-		} 
+				_HeroMain.ActivateAnimation (currentAction._actionAnimation);
+				currentAction.SetCasterReceiver (_HeroMain.gameObject, _TestenemyGo);	// TODO: find better/more flexible way to integrate _TestenemeyGo functionality
+				currentAction.ProcessAction (currentAction._type);
+			} 
 //		else 
 //		{
 //			Debug.LogWarning("No Actions in Queue");
 //		}
+		}
 	}
 
 	private void ApplyEnemyQueueAction()
 	{
-		if (_enemyActionQueue.Count > 0) 
-		{
-			ActionType currentAction = _enemyActionQueue.Dequeue();
-			
-			currentAction.SetCasterReceiver( currentAction._actionCaster, _HeroMain.gameObject );
-			currentAction.ProcessAction( currentAction._type );
-			Debug.LogWarning("Happend");
-			
-		} 
-		else 
-		{
-//			Debug.LogWarning("No Actions in Enemy Queue Combat Controller telling ya");
+		if (_enemyActionQueue.Count > 0) {
+			ActionType currentAction = _enemyActionQueue.Dequeue ();
+		
+			EntityMain currentEntity = currentAction._actionCaster.GetComponent<EntityMain> ();
+		
+			if (!currentEntity.Death ()) {
+				currentAction.SetCasterReceiver (currentAction._actionCaster, _HeroMain.gameObject);
+				currentAction.ProcessAction (currentAction._type);
+				Debug.LogWarning ("Enemy attack happend");
+			} else {
+				//			Debug.LogWarning("No Actions in Enemy Queue Combat Controller telling ya");
+			}
 		}
 	}
 
