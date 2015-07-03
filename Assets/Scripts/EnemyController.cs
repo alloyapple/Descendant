@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			Destroy (this.gameObject);
-			_enemyManger.SpawnNewEnemy();
+			_enemyManger.StartCoroutine("WaitBeforeSpawn");
 		}
 
 		RunInterval();

@@ -63,9 +63,18 @@ public class EnemyManager : MonoBehaviour {
 		m_uiController = ui;
 	}
 
+	public IEnumerator WaitBeforeSpawn()
+	{
+		yield return new WaitForSeconds(2f);
+		SpawnNewEnemy ();
+		
+	}
+
 	public void SpawnNewEnemy()
 	{
 //		if (m_currentEnemy == null || m_currentEnemySpawnQueue.Count > 0) 
+
+		WaitBeforeSpawn ();
 
 		if ( m_currentSpawnInterval > _spawnIntervals )
 		{

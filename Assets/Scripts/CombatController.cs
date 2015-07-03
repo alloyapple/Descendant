@@ -154,17 +154,19 @@ public class CombatController : MonoBehaviour {
 
 	private void ApplyEnemyQueueAction()
 	{
-		if (_enemyActionQueue.Count > 0) {
-			ActionType currentAction = _enemyActionQueue.Dequeue ();
+		if (_TestenemyGo != null) {
+			if (_enemyActionQueue.Count > 0) {
+				ActionType currentAction = _enemyActionQueue.Dequeue ();
 		
-			EntityMain currentEntity = currentAction._actionCaster.GetComponent<EntityMain> ();
+				EntityMain currentEntity = currentAction._actionCaster.GetComponent<EntityMain> ();
 		
-			if (!currentEntity.Death ()) {
-				currentAction.SetCasterReceiver (currentAction._actionCaster, _HeroMain.gameObject);
-				currentAction.ProcessAction (currentAction._type);
-				Debug.LogWarning ("Enemy attack happend");
-			} else {
-				//			Debug.LogWarning("No Actions in Enemy Queue Combat Controller telling ya");
+				if (!currentEntity.Death ()) {
+					currentAction.SetCasterReceiver (currentAction._actionCaster, _HeroMain.gameObject);
+					currentAction.ProcessAction (currentAction._type);
+					Debug.LogWarning ("Enemy attack happend");
+				} else {
+					//			Debug.LogWarning("No Actions in Enemy Queue Combat Controller telling ya");
+				}
 			}
 		}
 	}
