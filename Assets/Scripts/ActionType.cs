@@ -41,14 +41,8 @@ public class ActionType : MonoBehaviour
 	public GameObject _actionReceiver;
 	private EntityMain m_actionCasterEntity;
 	private EntityMain m_actionReceiverEntity;
-	
-	public GameObject 	_initialEffect;			//Effect cast on animation start
-	public bool 		_initialEffectOnCaster;	//Is it on the caster?
-	public GameObject 	_impactEffect;			//Effect cast on ability impact
-	public bool 		_impactEffectOnCaster;	//Is it on the caster?
-	
-	private GameObject _initialHolder;
-	private GameObject _impactHolder;
+
+
 
 //	public ActionType ( GameObject CasterGo, GameObject ReceiverGo )
 //	{
@@ -78,8 +72,6 @@ public class ActionType : MonoBehaviour
 	
 	public void ProcessAction( ActionTypeName currentAction)
 	{
-		ProcessEffects ();
-
 		switch (currentAction) {
 		case ActionTypeName.DealDamage:
 			{
@@ -119,44 +111,6 @@ public class ActionType : MonoBehaviour
 			}
 		}
 	}
-
-	public void ProcessEffects()
-	{
-		Vector3 m_initialPosition;
-		Vector3 m_impactPosition;
-
-		Debug.Log (m_actionReceiverEntity);
-
-		if(_initialEffectOnCaster)
-		{
-			m_initialPosition = m_actionCasterEntity.transform.position;
-		}
-		else
-		{
-			m_initialPosition = m_actionReceiverEntity.transform.position;
-		}
-		if(_impactEffectOnCaster)
-		{
-			m_impactPosition = m_actionCasterEntity.transform.position;
-		}
-		else
-		{
-			m_impactPosition = m_actionReceiverEntity.transform.position;
-		}
-
-		if(_initialEffect != null)
-		{
-			_initialHolder = (GameObject) Instantiate (_initialEffect,m_initialPosition,transform.rotation);
-			Destroy (_initialHolder,1f);
-		}
-		
-		if(_impactEffect != null)
-		{
-			_impactHolder = (GameObject) Instantiate (_impactEffect,m_impactPosition,transform.rotation);
-			Destroy (_impactHolder, 1f);
-		}
-
-	}
 	
 	#endregion
 	
@@ -182,28 +136,28 @@ public class ActionType : MonoBehaviour
 	{
 		// TODO: Have list for multiple receivers
 
-		if (_actionCaster != caster) 
-		{
-			_actionCaster = caster;
-		}
-		if (_actionReceiver != receiver) 
-		{
-			_actionReceiver = receiver;
-		}
+//		if (_actionCaster != caster) 
+//		{
+//			_actionCaster = caster;
+//		}
+//		if (_actionReceiver != receiver) 
+//		{
+//			_actionReceiver = receiver;
+//		}
 
-//		_actionCaster = caster;
-//		_actionReceiver = receiver;
+		_actionCaster = caster;
+		_actionReceiver = receiver;
 
 		if (_actionCaster != null && _actionReceiver != null) 
 		{
 			m_actionCasterEntity = _actionCaster.GetComponent<EntityMain> ();
 			m_actionReceiverEntity = _actionReceiver.GetComponent<EntityMain> ();
 			
-			Debug.Log ("Set Caster and Receiver");
+			Debug.Log ("Set Caster and Receiver, Hero and Enemies Exist");
 		}
 		else
 		{
-			Debug.LogWarning ("No Caster and Receiver Set!");
+			Debug.LogWarning ("No Caster and Receiver Set! Where is the Hero and the Enemies -- " + " Caster: " + _actionCaster + " Receiver: " + _actionReceiver);
 		}
 	}
 	

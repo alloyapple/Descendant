@@ -85,6 +85,7 @@ public class CombatController : MonoBehaviour {
 	void Update () 
 	{
 		RunInterval();
+		ApplyEnemyQueueAction();
 	}
 
 	private void ResetInterval()
@@ -139,16 +140,16 @@ public class CombatController : MonoBehaviour {
 		{
 			ActionType currentAction = _actionQueue.Dequeue();
 
-			currentAction.SetCasterReceiver( _HeroMain.gameObject, _TestenemyGo );
+			currentAction.SetCasterReceiver( _HeroMain.gameObject, _TestenemyGo );	// TODO: find better/more flexible way to integrate _TestenemeyGo functionality
 			currentAction.ProcessAction( currentAction._type );
 		} 
-		else 
-		{
-			Debug.LogWarning("No Actions in Queue");
-		}
+//		else 
+//		{
+//			Debug.LogWarning("No Actions in Queue");
+//		}
 	}
 
-	private void ApplyEnemyAction()
+	private void ApplyEnemyQueueAction()
 	{
 		if (_enemyActionQueue.Count > 0) 
 		{
@@ -156,10 +157,12 @@ public class CombatController : MonoBehaviour {
 			
 			currentAction.SetCasterReceiver( currentAction._actionCaster, _HeroMain.gameObject );
 			currentAction.ProcessAction( currentAction._type );
+			Debug.LogWarning("Happend");
+			
 		} 
 		else 
 		{
-			Debug.LogWarning("No Actions in Queue");
+//			Debug.LogWarning("No Actions in Enemy Queue Combat Controller telling ya");
 		}
 	}
 

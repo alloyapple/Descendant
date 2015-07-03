@@ -20,7 +20,7 @@ public class Ancestor : MonoBehaviour {
 	public AncestorClasses	_playerAncestor;
 
 //	public GameObject 	_ancestorGo;				// TODO: handle gfx etc. use later
-	public int 			_attackPoints;
+	public int 			_damageAddition;
 	public int			_armorAddition;
 	public int			_healthAddition;
 
@@ -53,7 +53,7 @@ public class Ancestor : MonoBehaviour {
 	private float 		m_currentInterval; //how far into the current interval are we?
 	private bool 		m_hasAction; //has the entity activated an action?
 
-	public void Start()
+	public void Awake()
 	{
 
 

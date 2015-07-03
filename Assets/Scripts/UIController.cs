@@ -7,6 +7,8 @@ public class UIController : MonoBehaviour
 	
 	public GameObject ExitButton;
 	public GameObject VictoryScreen;
+	public GameObject LossScreen;
+	
 	
 	public Slider _intervalIndicator;
 	public Slider _heroHealth;
@@ -78,6 +80,11 @@ public class UIController : MonoBehaviour
 	public void Victory()
 	{
 		VictoryScreen.SetActive (true);
+	}
+
+	public void Loss()
+	{
+		LossScreen.SetActive (true); // TODO: Link loss screen
 	}
 	
 	public void UpdateIntervalIndicator(float m_progress)

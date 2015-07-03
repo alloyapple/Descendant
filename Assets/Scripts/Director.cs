@@ -15,6 +15,7 @@ public class Director : MonoBehaviour
 	public Ancestor _selectedAncestor;
 
 	private int m_playerClassNum;
+	private EnemyManager m_currentEnemyManger;
 
 	void Start()
 	{
@@ -22,7 +23,7 @@ public class Director : MonoBehaviour
 
 		m_playerClassNum = GameObject.FindObjectOfType<AncestorSelection>().selectedAncestor;
 
-		if(m_playerClassNum==null){
+		if(m_playerClassNum==0){
 			m_playerClassNum = 1;
 		}
 
@@ -57,6 +58,10 @@ public class Director : MonoBehaviour
 			}
 		}
 		AddOtherAncestors();
+
+		m_currentEnemyManger = FindObjectOfType<EnemyManager>();
+		if ( m_currentEnemyManger == null )
+			Debug.LogWarning("Director couldn't find Enemy Manager");
 	}
 
 	void AddOtherAncestors()
@@ -73,11 +78,16 @@ public class Director : MonoBehaviour
 		Application.LoadLevelAdditive("UI");
 	}
 
-
 	public void Victory()
 	{
-		Debug.Log (_uiController);
+		Debug.Log ("Victory! - End game screen to be called");
 		_uiController.Victory();
+	}
+
+	public void Loss()
+	{
+		Debug.Log ("Game Over! - End game screen to be called");
+		_uiController.Loss();
 	}
 
 }
