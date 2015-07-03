@@ -109,7 +109,7 @@ public class UIController : MonoBehaviour
 	
 	public void UpdateIntervalIndicator(float m_progress)
 	{
-		_playerIcon.transform.FindChild("Background").FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount = m_progress;
+		_playerIcon.transform.FindChild("Background").FindChild("Cooldown").GetComponent<UnityEngine.UI.Image>().fillAmount =1f- m_progress;
 		//_intervalIndicator.value = m_progress;
 	}
 	
