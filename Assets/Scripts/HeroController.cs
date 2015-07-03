@@ -10,6 +10,7 @@ public class HeroController : MonoBehaviour {
 	public int 		_damage;
 	public int 		_actionPoints;
 	public float 	_attackRate;					// TODO: Inherit from Ancestor
+	public int		_energy;
 
 	public List<Ancestor>	_ancestorList;			// TODO: Possible wrap layer for ancestor class to manage multiple players
 	public List<EntityMain> _enemyList;				
@@ -19,6 +20,7 @@ public class HeroController : MonoBehaviour {
 	private int	m_maxHealth;
 	private int m_maxArmor;
 	private int m_maxDamage;
+
 
 //	EnemyController _enemyController;
 
