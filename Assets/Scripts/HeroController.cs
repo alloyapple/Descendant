@@ -26,6 +26,7 @@ public class HeroController : MonoBehaviour {
 	public float m_fullAnimTiming;
 
 	private Director m_director;
+	private UIController m_uiController;
 
 	void Start()
 	{
@@ -39,6 +40,12 @@ public class HeroController : MonoBehaviour {
 	void Awake()
 	{
 
+	}
+
+	public void PassUI(UIController ui)
+	{
+		m_uiController = ui;
+		Debug.Log (m_uiController);
 	}
 
 	public void ActivateAnimation(int animNum)
@@ -69,13 +76,20 @@ public class HeroController : MonoBehaviour {
 				ResetAnimation();
 			}
 		}
-		Debug.Log(_localEntityMain);
-		if(_localEntityMain!=null && _localEntityMain.Death() ) 
+
+		if(_localEntityMain!=null)
 		{
-			Debug.LogWarning("Hero killed!!!!");
-			Destroy (_localEntityMain.gameObject);
-			m_director.Loss();
-			
+			if(_localEntityMain.Death() ) 
+			{
+				Debug.LogWarning("Hero killed!!!!");
+				Destroy (_localEntityMain.gameObject);
+				m_director.Loss();
+				
+			}
+		}
+		if (m_uiController != null)
+		{
+			m_uiController.UpdateHeroHealth((float)_localEntityMain._health / _localEntityMain._healthMax);
 		}
 	}
 
@@ -99,6 +113,9 @@ public class HeroController : MonoBehaviour {
 
 				// TODO: Add extra values to local entity
 			}
+			_localEntityMain._armorMax = _localEntityMain._armor;
+			_localEntityMain._healthMax = _localEntityMain._health;
+			_localEntityMain._damageMax = _localEntityMain._damage;
 		}
 
 //		if (_localEntityMain != null) 

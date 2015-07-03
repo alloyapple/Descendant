@@ -17,6 +17,8 @@ public class EnemyManager : MonoBehaviour {
 	private Director m_director;
 //	private GameObject m_currentEnemy;
 
+	private UIController m_uiController;
+
 	void Start () 
 	{
 		m_director = FindObjectOfType<Director>();
@@ -56,6 +58,11 @@ public class EnemyManager : MonoBehaviour {
 		SpawnNewEnemy ();
 	}
 
+	public void PassUI(UIController ui)
+	{
+		m_uiController = ui;
+	}
+
 	public void SpawnNewEnemy()
 	{
 //		if (m_currentEnemy == null || m_currentEnemySpawnQueue.Count > 0) 
@@ -81,6 +88,7 @@ public class EnemyManager : MonoBehaviour {
 			{
 				object2SpawnController._combatController = _combatController;
 				object2SpawnController._enemyManger = this;
+				object2SpawnController.PassUI(m_uiController);
 				object2SpawnController._instanceRef = newSpawnedObject;
 				_combatController._TestenemyGo = newSpawnedObject;
 			}

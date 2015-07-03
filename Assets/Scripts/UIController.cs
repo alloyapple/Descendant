@@ -22,6 +22,9 @@ public class UIController : MonoBehaviour
 	public Image _playerBg;
 
 	Ancestor _ancestor;
+	HeroController _hero;
+	EnemyController _enemy;
+	EnemyManager _enemyManager;
 	
 	void Start()
 	{
@@ -34,7 +37,13 @@ public class UIController : MonoBehaviour
 			}
 		}
 		_ancestor.PassUI(this);
-		
+		_hero = FindObjectOfType<HeroController>();
+		_hero.PassUI(this);
+		_enemy = FindObjectOfType<EnemyController>();
+		_enemy.PassUI(this);
+		_enemyManager = FindObjectOfType<EnemyManager>();
+		_enemyManager.PassUI(this);
+
 		VictoryScreen.SetActive (false);
 		LossScreen.SetActive (false);
 		
@@ -113,6 +122,7 @@ public class UIController : MonoBehaviour
 	
 	public void UpdateEnemyHealth(float health)
 	{
+		Debug.Log ("Update Enemy Health "+health);
 		_enemyHealth.value = health;
 	}
 	

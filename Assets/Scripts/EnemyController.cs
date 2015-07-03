@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour {
 
 	private ActionType	m_queuedAction;
 
+	private UIController m_uiController;
+
 	#region Interval Methods
 
 	void Start()
@@ -47,6 +49,15 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		RunInterval();
+		if(m_uiController != null)
+		{
+			m_uiController.UpdateEnemyHealth((float)_EntityController._health / _EntityController._healthMax);
+		}
+	}
+
+	public void PassUI(UIController ui)
+	{
+		m_uiController = ui;
 	}
 
 	private void RunInterval()
