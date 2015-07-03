@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour
 	public Image _button1;
 	public Image _button2;
 	public Image _button3;
+	public Image _playerBg;
 
 	Ancestor _ancestor;
 	
@@ -39,11 +40,18 @@ public class UIController : MonoBehaviour
 		_intervalIndicator.value = 0;
 		_heroHealth.value = 1;
 		_enemyHealth.value = 1;
-
+		
 		_playerIcon.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorIcon;
+		_playerIcon.transform.FindChild("Background").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorBg;
 		_button1.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action1._actionIcon;
+		_button1.transform.FindChild("Background").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorBg;
 		_button2.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action2._actionIcon;
+		_button2.transform.FindChild("Background").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorBg;
 		_button3.transform.FindChild("Icon").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._action3._actionIcon;
+		_button3.transform.FindChild("Background").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorBg;
+		ExitButton.transform.FindChild("Background").GetComponent<UnityEngine.UI.Image>().sprite = _ancestor._ancestorBg;
+
+
 
 	}
 	
