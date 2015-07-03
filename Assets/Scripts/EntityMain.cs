@@ -51,9 +51,13 @@ public class EntityMain : MonoBehaviour {
 		}
 	}
 
-	public void Death()
+	public bool Death()
 	{
-		// erase object from list
+		// TODO: Plug this bool into hero and enemy controller
+		if ( _health <= 0 )
+			return true;	
+		else
+			return false;
 	}
 }
 
